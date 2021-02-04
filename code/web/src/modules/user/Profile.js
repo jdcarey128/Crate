@@ -15,6 +15,26 @@ import { grey, grey2 } from '../../ui/common/colors'
 import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
 
+/* annot:  
+- upload my own image, 
+- set personal description, 
+- edit my email address and shipping address
+
+Questions:
+- remove Grid below to keep things simple?
+- should we have a button to add profile pic separate from modal? 
+
+Expected Needs:
+- a way to upload a photo
+- Modal form component (edit email address, shipping address)
+- default image for users with no profile pic
+
+on page load user will see profile page with img (if uploaded, else default img)
+to upload a profile picture, click add profile picture button (SEE Q)
+to edit their profile, click Edit button,
+modal will pop up with controlled form
+*/
+
 // Component
 const Profile = (props) => (
   <div>
