@@ -11,6 +11,10 @@ export const userInitialState = {
 }
 
 // State
+
+// import in EDIT_USER
+// build case for EDIT_USER that returns updated information from BE mutation 
+
 export default (state = userInitialState, action) => {
   switch (action.type) {
     case SET_USER:

@@ -14,6 +14,12 @@ export const LOGOUT = 'AUTH/LOGOUT'
 
 // Actions
 
+// build a new action for updating user information 
+// build an axios post to make a backend mutation request 
+// load action into dispatch 
+// export EDIT_USER action type 
+// build 'reducer' in the state.js file 
+
 // Set a user after login or using localStorage token
 export function setUser(token, user) {
   if (token) {
@@ -33,6 +39,7 @@ export function login(userCredentials, isLoading = true) {
       isLoading
     })
 
+    {/* add user fields image, description, address */}
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
