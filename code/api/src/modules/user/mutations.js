@@ -27,6 +27,18 @@ export const userSignup = {
   resolve: create
 }
 
+// TODO: add userUpdate mutation 
+// export const userEdit = {
+// type: UserType, 
+//   args: {
+//     ... Can this be dynamic? ie. take in any one or all of the fields a 
+//     user would want to update? 
+//   }
+//  resolve: update
+// }
+
+
+
 // Remove
 export const userRemove = {
   type: UserType,

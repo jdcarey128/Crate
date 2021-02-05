@@ -14,7 +14,7 @@ export const LOGOUT = 'AUTH/LOGOUT'
 
 // Actions
 
-// build a new action for updating user information 
+// TODO: build a new action for updating user information 
 // build an axios post to make a backend mutation request 
 // load action into dispatch 
 // export EDIT_USER action type 
