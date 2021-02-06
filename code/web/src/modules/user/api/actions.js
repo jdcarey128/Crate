@@ -51,6 +51,7 @@ export function login(userCredentials, isLoading = true) {
         if (response.data.errors && response.data.errors.length > 0) {
           error = response.data.errors[0].message
         } else if (response.data.data.userLogin.token !== '') {
+          // TODO: First data is axios, the second data is GraphQL
           const token = response.data.data.userLogin.token
           const user = response.data.data.userLogin.user
 

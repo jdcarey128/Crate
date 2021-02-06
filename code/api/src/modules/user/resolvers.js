@@ -77,3 +77,10 @@ export async function remove(parentValue, { id }) {
 export async function getGenders() {
   return Object.values(params.user.gender)
 }
+
+// TODO: define updateUser 
+// export async function updateUser(parentValue, { id }) {
+//   const user = await models.user.findById(id)
+//   user.set('')
+//   ...
+// }
