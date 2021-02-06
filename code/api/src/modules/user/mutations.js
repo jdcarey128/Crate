@@ -1,3 +1,10 @@
+/*TODO
+Add POSTs for:
+image
+description
+shipping address
+*/
+
 // Imports
 import { GraphQLString, GraphQLInt } from 'graphql'
 

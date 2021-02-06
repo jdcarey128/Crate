@@ -1,3 +1,8 @@
+
+/*TODO
+add types for the new data associated with a user
+*/
+
 // Imports
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 

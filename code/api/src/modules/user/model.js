@@ -1,4 +1,7 @@
 'use strict'
+/*TODO
+add description, image, shipping
+*/
 
 // User
 module.exports = function(sequelize, DataTypes) {

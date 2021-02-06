@@ -1,3 +1,10 @@
+/*TODO
+Add GETs for:
+image
+description
+shipping address
+*/
+
 // Imports
 import { GraphQLInt, GraphQLString, GraphQLList } from 'graphql'
 
