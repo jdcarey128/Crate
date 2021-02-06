@@ -1,3 +1,8 @@
+//Will need to make a create/edit file for the profile page of the user. Within that create/edit page, will need to take the
+//functional code for uplaoding images that was written for the admin and put that code within the create/edit file for the user
+//On the back-end, we need to make a image column in the user table that will be a string data type to contain the 
+//location of the image asset
+
 // Imports
 import React from 'react'
 import PropTypes from 'prop-types'
