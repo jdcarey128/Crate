@@ -20,20 +20,51 @@ import { logout } from './api/actions'
 - set personal description, 
 - edit my email address and shipping address
 
-Questions:
-- remove Grid below to keep things simple?
-- should we have a button to add profile pic separate from modal? 
-
-Expected Needs:
-- a way to upload a photo
-- Modal form component (edit email address, shipping address)
-- default image for users with no profile pic
-
+User Walkthrough:
 on page load user will see profile page with img (if uploaded, else default img)
 to upload a profile picture, click add profile picture button (SEE Q)
 to edit their profile, click Edit button,
 modal will pop up with controlled form
+
+Expected Needs:
+- a way to upload a photo
+- NEW COMPONENT: Form component w/ route (class component) based on form in admin view
+  (edit email address, shipping address, personal description)
+  - handleChange, onSubmit functions
+- default image for users with no profile pic
+- connect to state through dispatchToProps in Profile? (dont think we need. see line 60 in signup)
+
+Questions:
+- remove Grid below to keep things simple?
+- should we have a button to add profile pic separate from modal? 
+- is it better to submit all form values at once or individually? Does it make a difference
+  for backend? and if not, what is best for front-end mvp
+
+
+
+
+for photo:
+  - need to add an action in profile actions
+ -------------------------
+- Form component with route based on form in admin view:
+  this.state:
+    email, 
+    shipping address, 
+    description
+    
+  form will call this.props.changeUserDetails()
+
+  - file of actions:
+  export function changeUserDetails() {
+    return dispatch => {
+      return axios.patch(routeApi, mutation)
+    }
+  }
+
+
 */
+
+
 
 // Component
 const Profile = (props) => (
