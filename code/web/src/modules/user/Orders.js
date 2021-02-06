@@ -18,6 +18,10 @@ All other cards will be under heading of:
 'Delivered Crates'
 with a boolean: false for date in the future.
 
+BE Notes:
+I think BE said they will need to make new files for the api calls for this
+I did not make annotations for BE for this part, as it was getting a little over my head
+
 */
 
 /* TODO:
