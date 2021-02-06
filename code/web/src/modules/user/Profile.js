@@ -1,6 +1,6 @@
 //TODO: for profile updates
 /*
-This will need to add button for Orders and to Edit Profile
+This will need to add buttons for Orders and Edit Profile
   - for Edit Profile button reference: web/src/modules/admin/product/List.js             line 30, 114
 
 Will also need to add image, description, shipping address to render
