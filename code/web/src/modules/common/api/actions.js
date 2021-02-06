@@ -14,6 +14,7 @@ export function messageHide() {
   return { type: MESSAGE_HIDE }
 }
 
+//TODO: We should be able to use this to help us upload a profile photo
 export function upload(data) {
   return dispatch => {
     return axios.post(routeApi + '/upload', data, {
