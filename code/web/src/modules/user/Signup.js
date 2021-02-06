@@ -1,3 +1,9 @@
+/*TODO
+Will this need an updated state?
+
+I'm uncertain just at the moment where props are coming from for Profile (a functional compenent)
+*/
+
 // Imports
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
@@ -35,6 +41,13 @@ class Signup extends Component {
         name: '',
         email: '',
         password: '',
+        /*TODO:
+        image: '',
+        description: '',
+        shippingAddress: '',
+
+        I think this is wrong here. I think it needs to go in a ProfileEdit Class component
+        */
       }
     }
   }
