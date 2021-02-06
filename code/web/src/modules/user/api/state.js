@@ -20,6 +20,8 @@ export default (state = userInitialState, action) => {
         details: action.user,
       }
 
+// TODO: Will we need a case for EDIT_PROFILE here?
+
     case LOGIN_REQUEST:
       return {
         ...state,
