@@ -1,3 +1,5 @@
+//Will need to add a userupdate mutation here to allow for updating user profile
+
 // Imports
 import { GraphQLString, GraphQLInt } from 'graphql'
 

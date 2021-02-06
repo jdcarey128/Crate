@@ -1,3 +1,5 @@
+//will need to add an update resolver for user profile
+
 // Imports
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
