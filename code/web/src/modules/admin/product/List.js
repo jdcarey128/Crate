@@ -27,7 +27,7 @@ class List extends PureComponent {
   static fetchData({ store }) {
     return store.dispatch(getProductList())
   }
-
+//TODO: We should be able to use something similar to GET Next Delivery and product history from BE
   // Runs on client only
   componentDidMount() {
     this.props.getProductList()
@@ -111,7 +111,7 @@ class List extends PureComponent {
                     <th style={{ textAlign: 'center' }}>Actions</th>
                   </tr>
                 </thead>
-
+{/* TODO: We can use this <tr></tr> with mapping to display user's product order history */}
                 <tbody>
                 {
                   isLoading
