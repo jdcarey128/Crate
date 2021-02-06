@@ -44,22 +44,34 @@ Expected Needs:
 for photo:
   - need to add an action in profile actions ()
  -------------------------
-- ProfileForm component with route based on form in admin view:
+- ProfileForm component with route based on form in admin view
   this.state:
-    image,
-    email, 
-    shipping address, 
-    description
-  
+    details: {
+      image,
+      email, 
+      shipping address, 
+      description
+    },
+    isLoading
+
+  methods & props:
+    this.onUpload(event) - for photo upload
+    this.props.upload(data) - for api call
+    this.props.messageShow('File uploaded successfully.')  
+    this.props.messageHide()
+    this.onSubmit(event) - submit form
+    this.props.editUserDetails(this.state)
+
   form inputs placeholder text = `'practice@email.com or new entry' || this.state.email`  
     
-  save button - onClick will call this.props.edit()
-  back button - 
+  save button - onClick will call this.props.editUserDetails()
+  choose file button - 
+  back button - <Link to='/user/profile'
 
   - src/modules/user/api/actions.js - file w/ actions:
   *This will be for all inputs on form
 
-    export function edit() {
+    export function editUserDetails() {
       return dispatch => {
         return axios.patch(routeApi, mutation)
       }
