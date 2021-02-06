@@ -20,6 +20,9 @@ export const LOGOUT = 'AUTH/LOGOUT'
 // export EDIT_USER action type 
 // build 'reducer' in the state.js file 
 
+// build an axios post request to make a backend mutation for image (maybe can combine with above, maybe will need to follow diff path)
+// TODO: export EDIT_USER_IMAGE action type 
+
 // Set a user after login or using localStorage token
 export function setUser(token, user) {
   if (token) {
@@ -31,6 +34,25 @@ export function setUser(token, user) {
   return { type: SET_USER, user }
 }
 
+// TODO: Add editUser action 
+// export function editUser(userDetails, token) {
+//   if (token is valid) {
+//     do something to update the user 
+//   } 
+//   dispath => {
+
+//   }
+//   return axios.post(routeApi, mutation({
+//     ... 
+//   }))
+//     .then(response) => {
+//       ...
+//     }
+//     .catch() => {
+//       ...
+//     }
+// }
+
 // Login a user using credentials
 export function login(userCredentials, isLoading = true) {
   return dispatch => {
@@ -39,7 +61,7 @@ export function login(userCredentials, isLoading = true) {
       isLoading
     })
 
-    {/* add user fields image, description, address */}
+    {/* add user fields image, description, shippingAddress */}
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,

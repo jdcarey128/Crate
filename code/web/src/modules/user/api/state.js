@@ -15,6 +15,8 @@ export const userInitialState = {
 // TODO: 
 // import in EDIT_USER
 // build case for EDIT_USER that returns updated information from BE mutation response
+// import in EDIT_USER_IMAGE 
+// build case for EDIT_USER_IMAGE that returns updated image from BE mutation response
 
 export default (state = userInitialState, action) => {
   switch (action.type) {
