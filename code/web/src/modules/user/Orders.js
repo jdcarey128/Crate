@@ -7,12 +7,19 @@ annot:
 
 User Walkthrough:
 user clicks Orders in nav bar, brought to Orders component
-their Next Crate Delivery shows
+their Next Crate Delivery shows (date can be edited - reducer EDIT_DELIVERY)
+shows their product history below (no reducers)
+
+Render:
+Use grid/ list from modules/admin/product/List.js ~line 101
+  - order id, img?, (product) name, delivery date, edit/action, status
+
+
 
 Expected Needs:
-
+- 
 
 Questions:
-
+- List is a PureComponent but has sideEffects going on... don't think ours should be pure
 
 */
