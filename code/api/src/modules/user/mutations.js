@@ -38,3 +38,5 @@ export const userRemove = {
   },
   resolve: remove
 }
+
+//Add mutation for user description

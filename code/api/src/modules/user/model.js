@@ -14,6 +14,14 @@ module.exports = function(sequelize, DataTypes) {
     },
     role: {
       type: DataTypes.TEXT
+     }
+     // TODOBACKEND Add personal_description to users table
+     //,
+    // personal_description: {
+    //  type: DataTypes.STRING
+    // },
+    // user_image: {
+    // type: DataTypes.STRING
     }
   })
 
