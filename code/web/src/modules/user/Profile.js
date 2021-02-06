@@ -113,7 +113,7 @@ const Profile = (props) => (
     <Grid>
       <GridCell style={{ padding: '2em', textAlign: 'center' }}>
         <H4 style={{ marginBottom: '0.5em' }}>{props.user.details.name}</H4>
-        {/* TODO: Add button (or Link?) to see user next delivery and order history (route to new page for user) */}
+        {/* TODO: Add button (or Link?) to see user Orders (route to new page for user) */}
 
         <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.email}</p>
         {/* TODO: add image, description and shipping address jsx tags */}
@@ -121,7 +121,7 @@ const Profile = (props) => (
         <Link to={userRoutes.subscriptions.path}>
           <Button theme="primary">Subscriptions</Button>
         </Link>
-        {/* TODO: Add button to edit profile - which goes to modal (or routes to hidden page for user to edit) */}
+        {/* TODO: Add button to edit profile - which routes to path for user to edit) */}
 
         <Button theme="secondary" onClick={props.logout} style={{ marginLeft: '1em' }}>Logout</Button>
       </GridCell>

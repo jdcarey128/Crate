@@ -83,6 +83,7 @@ export function register(userDetails) {
       operation: 'userSignup',
       variables: userDetails,
       fields: ['id', 'name', 'email']
+ //TODO: Will need to update fields with shippingAddress, description, profileImage
     }))
   }
 }
