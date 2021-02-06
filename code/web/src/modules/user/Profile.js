@@ -191,5 +191,8 @@ render:
     We should be able to pull from:
     src/admin/product/List.js for the logic of displaying order history
     
+NOTES:
+ - maybe could add an api call on Login to get crates/product history - We decided NO
 
+ - To get all the past and future product ordering data is probably 1 call!
 */
