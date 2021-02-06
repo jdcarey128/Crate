@@ -27,39 +27,46 @@ to edit their profile, click Edit button,
 modal will pop up with controlled form
 
 Expected Needs:
-- a way to upload a photo
-- NEW COMPONENT: Form component w/ route (class component) based on form in admin view
+- use upload() from 
+- NEW COMPONENT: ProfileForm component w/ route (class component) based on form in admin view
   (edit email address, shipping address, personal description)
   - handleChange, onSubmit functions
+- src/setup/routes/user.js - add a route 
+  edit: {
+    path: '/user/profile/edit',
+    component: ProfileForm,
+    auth: true
+  }
 - default image for users with no profile pic
-- connect to state through dispatchToProps in Profile? (dont think we need. see line 60 in signup)
-
-Questions:
-- remove Grid below to keep things simple?
-- should we have a button to add profile pic separate from modal? 
-- is it better to submit all form values at once or individually? Does it make a difference
-  for backend? and if not, what is best for front-end mvp
 
 
-
-
+- 
 for photo:
-  - need to add an action in profile actions
+  - need to add an action in profile actions ()
  -------------------------
-- Form component with route based on form in admin view:
+- ProfileForm component with route based on form in admin view:
   this.state:
+    image,
     email, 
     shipping address, 
     description
+  
+  form inputs placeholder text = `'practice@email.com or new entry' || this.state.email`  
     
-  form will call this.props.changeUserDetails()
+  save button - onClick will call this.props.edit()
+  back button - 
 
-  - file of actions:
-  export function changeUserDetails() {
-    return dispatch => {
-      return axios.patch(routeApi, mutation)
+  - src/modules/user/api/actions.js - file w/ actions:
+  *This will be for all inputs on form
+
+    export function edit() {
+      return dispatch => {
+        return axios.patch(routeApi, mutation)
+      }
     }
-  }
+
+  
+
 
 
 */
