@@ -170,6 +170,8 @@ class CreateOrEdit extends Component {
       })
   }
 
+  //TODO: We should be able to use this method to help us with the logic for uploading a 
+  // user's profile image
   onUpload = (event) => {
     this.props.messageShow('Uploading file, please wait...')
 
@@ -305,7 +307,7 @@ class CreateOrEdit extends Component {
                         <option disabled="disabled" selected="selected">Select gender</option>
                     }
                   </Select>
-
+{/* TODO: We should be able to use Upload File for the logic of adding a user profile image */}
                   {/* Upload File */}
                   <div style={{ marginTop: '1em' }}>
                     <input
@@ -314,6 +316,7 @@ class CreateOrEdit extends Component {
                       required={this.state.product.id === 0}
                     />
                   </div>
+{/* TODO: We should be able to use Uploaded image for the logic of adding a user profile image */}
 
                   {/* Uploaded image */}
                   {renderIf(this.state.product.image !== '', () => (
