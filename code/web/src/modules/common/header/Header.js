@@ -55,7 +55,7 @@ const Header = (props) => {
               ?
               <Menu>
                 { props.user.details.role === 'ADMIN' && <MenuItem to={admin.dashboard.path} section="admin">Admin</MenuItem> }
-
+{/* TODO: Add a button to see product history here */}
                 <MenuItem to={crate.list.path}>Crates</MenuItem>
 
                 <MenuItem to={user.subscriptions.path}>Subscriptions</MenuItem>
