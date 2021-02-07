@@ -28,3 +28,17 @@ connection
   })
 
 export default connection
+
+
+/* TODO: add testing environment and get rid of production environment 
+  {
+    "test": {
+      "username": "postgres",
+      "password": null, 
+      "database": "crate_test",
+      "host": "127.0.0.01",
+      "dialect": "postgres",
+      "seederStorage": "sequelize" // is this needed? 
+    }
+  }
+*/
