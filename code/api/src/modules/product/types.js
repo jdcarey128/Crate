@@ -1,6 +1,10 @@
 // Imports
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
+// TODO: add ProductDeliveriesType 
+// product should be ProductType 
+// add resolve so that parent.productId === products.id 
+
 // Product type
 const ProductType = new GraphQLObjectType({
   name: 'product',

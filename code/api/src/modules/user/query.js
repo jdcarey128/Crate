@@ -47,3 +47,5 @@ export const userGenders = {
   type: new GraphQLList(UserGenderType),
   resolve: getGenders
 }
+
+// TODO: add userOrders query

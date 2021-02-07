@@ -7,6 +7,14 @@ const UserType = new GraphQLObjectType({
   description: 'User type',
 
   // TODO: Add description, shippingAddress and image types 
+
+  // Run migration for orders and product deliveries
+  // add UserOrdersType and export at the bottom 
+  // import GraphQLList in imports above 
+  // import CrateOrdersType as OrdersType above 
+  // OrdersType should be a list 
+  // resolve for OrdersType should grab all orders where parent.id === userId
+  // move resolve to user resolvers once it is working 
   
   fields: () => ({
     id: { type: GraphQLInt },
