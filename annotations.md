@@ -16,16 +16,37 @@ BE:
 
 Files:
   FE:
-    code/web/src/modules/user/Profile.js
-    code/web/src/modules/user/api/actions.js
+    * code/web/src/modules/user/Profile.js
+    * code/web/src/modules/user/api/actions.js
 
   BE:
-    code/api/src/modules/user/mutation.js
-    code/api/src/modules/user/query.js
-    code/api/src/migrations/user.js
-    code/api/src/modules/setup/schema/index.js
-    code/api/src/modules/setup/schema/queries.js
-    code/api/src/modules/setup/schema/mutations.js
+    * code/api/src/modules/user/mutation.js
+      - add userUpdate method
+      - import update from resolvers
+    * code/api/src/migrations/user.js
+      - Add image column
+    * code/api/src/modules/user/model.js
+      - add image datatype
+      - user has many orders
+      - user has many products through orders
+    * code/api/src/modules/user/resolvers.js
+      - add image detail
+      - userUpdate method
+    * code/api/src/modules/user/types.js
+      - Add image to user type
+    * code/api/src/seeders/user.js
+      - Seed more users with new data as well
+    * code/api/src/seeders/products.js
+      - Seed more data, products will need to have a foreign key to orders
+
+=>psql
+
+=>\c crate;
+
+=>ALTER TABLE users
+=>ADD COLUMN description VARCHAR;
+
+
 
 ## User can create/edit personal description
 FE:
@@ -40,16 +61,30 @@ BE:
 
 Files:
   FE:
-    code/web/src/modules/user/Profile.js
-    code/web/src/modules/user/api/actions.js
+    * code/web/src/modules/user/Profile.js
+    * code/web/src/modules/user/api/actions.js
 
   BE:
-    code/api/src/modules/user/mutation.js
-    code/api/src/modules/user/query.js
-    code/api/src/migrations/user.js
-    code/api/src/modules/setup/schema/index.js
-    code/api/src/modules/setup/schema/queries.js
-    code/api/src/modules/setup/schema/mutations.js
+    * code/api/src/modules/user/mutation.js
+      - add userUpdate method
+      - import update from resolvers
+    * code/api/src/migrations/user.js
+      - Add description column
+    * code/api/src/modules/user/model.js
+      - add description datatype
+      - user has many orders
+      - user has many products through orders
+    * code/api/src/modules/user/resolvers.js
+      - add description detail
+      - userUpdate method
+    * code/api/src/modules/user/types.js
+      - Add description to description type
+    * code/api/src/seeders/user.js
+      - Seed more users with new data as well
+    * code/api/src/seeders/products.js
+      - Seed more data, products will need to have a foreign key to orders
+
+From GraphiQL:
 
 
 ## User can edit email
@@ -64,16 +99,19 @@ BE:
 
 Files:
   FE:
-    code/web/src/modules/user/Profile.js
-    code/web/src/modules/user/api/actions.js
+    * code/web/src/modules/user/Profile.js
+    * code/web/src/modules/user/api/actions.js
 
   BE:
-    code/api/src/modules/user/mutation.js
-    code/api/src/modules/user/query.js
-    code/api/src/migrations/user.js
-    code/api/src/modules/setup/schema/index.js
-    code/api/src/modules/setup/schema/queries.js
-    code/api/src/modules/setup/schema/mutations.js
+    * code/api/src/modules/user/mutation.js
+      - add userUpdate method
+      - import update from resolvers
+    * code/api/src/modules/user/resolvers.js
+      - userUpdate method
+    * code/api/src/seeders/user.js
+      - Seed more users with new data as well
+    * code/api/src/seeders/products.js
+      - Seed more data, products will need to have a foreign key to orders
 
 ## User can edit shipping address
 FE:
@@ -83,21 +121,35 @@ I want to be able to edit my shipping address,
 So that I have a more complete user profile.
 
 BE:
-* create userShippingAddresses table with userId (belongs to users), address (varchar), address2 (varchar), city, state, zip
-* update User mutation to edit shipping address
+* add shippingAddress to Users table
+* add GraphQL mutations for add/edit shippingAddress
 
 Files:
   FE:
-    code/web/src/modules/user/Profile.js
-    code/web/src/modules/user/api/actions.js
+    * code/web/src/modules/user/Profile.js
+    * code/web/src/modules/user/api/actions.js
 
   BE:
-    code/api/src/modules/user/mutation.js
-    code/api/src/modules/user/query.js
-    code/api/src/migrations/user.js
-    code/api/src/modules/setup/schema/index.js
-    code/api/src/modules/setup/schema/queries.js
-    code/api/src/modules/setup/schema/mutations.js
+    * code/api/src/modules/user/mutation.js
+      - add userUpdate method
+      - import update from resolvers
+    * code/api/src/migrations/user.js
+      - Add shippingAddress column
+    * code/api/src/modules/user/model.js
+      - add shippingAddress datatype
+      - user has many orders
+      - user has many products through orders
+    * code/api/src/modules/user/resolvers.js
+      - add shippingAddress detail
+      - userUpdate method
+    * code/api/src/modules/user/types.js
+      - import GraphQLList
+      - Add shippingAddress to user type
+      - Add userOrderType method and export
+    * code/api/src/seeders/user.js
+      - Seed more users with new data as well
+    * code/api/src/seeders/products.js
+      - Seed more data, products will need to have a foreign key to orders
 
 ## User can get product history
 FE:
@@ -113,8 +165,43 @@ BE:
 
 Files:
   FE:
-    code/web/src/modules/deliveries/Orders.js
-    code/web/src/modules/orders/api/actions.js
+    * code/web/src/modules/deliveries/Orders.js
+    * code/web/src/modules/orders/api/actions.js
+
+  BE:
+    * code/api/src/migrations/orders.js
+     - Migrate orders table
+    * code/api/src/modules/order/model.js
+      - order function with relationships
+    * code/api/src/setup/models.js
+      - add orders to models
+    * code/api/src/modules/order/mutations.js
+      - import graphqlstring and graphqlint from graphql
+      - import orderType from types
+      - import create and remove from resolvers
+      - add create and remove method
+    * code/api/src/modules/order/query.js
+      - import graphqlint, graphqlstring, and graphqllist from graphql
+      - import orderType from types
+      - import getAll and getById from resolvers
+      - method get All
+      - method get by Id
+    * code/api/src/modules/order/resolvers.js
+      - import serverConfig, params and model
+      - create, get by Id, get All, delete
+    * code/api/src/modules/order/types.js
+      - import GraphQLObjectType, GraphQLString, GraphQLInt from graphql
+      - orderType
+      - export orderType
+    * code/api/src/setup/schema/mutations.js
+      - import order mutation
+      - order migration goes here
+    * code/api/src/setup/schema/queries.js
+      - import order query
+      - order migration goes here
+    * code/api/src/modules/user/types.js
+      - import GraphQLList
+      - Add userOrderType method and export
 
 ## User can edit delivery date
 FE:
@@ -128,5 +215,14 @@ BE:
 
 Files:
   FE:
-    code/web/src/modules/deliveries/Orders.js
-    code/web/src/modules/deliveries/api/actions.js
+    * code/web/src/modules/deliveries/Orders.js
+    * code/web/src/modules/deliveries/api/actions.js
+  BE:
+    * code/api/src/modules/order/mutation.js
+      - add orderEdit method
+      - import Edit from resolvers
+    * code/api/src/modules/user/resolvers.js
+      - orderEdit method
+    * code/api/src/modules/user/types.js
+      - import GraphQLList
+      - Add orderProductType method and export
