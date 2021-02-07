@@ -4,6 +4,11 @@ import Signup from '../../modules/user/Signup'
 import Profile from '../../modules/user/Profile'
 import Subscriptions from '../../modules/user/Subscriptions'
 
+// TODO: 
+// import Orders from '../../moduls/user/Orders'
+// add to user routes: orders 
+// path: '/user/orders'
+
 // User routes
 export default {
   login: {

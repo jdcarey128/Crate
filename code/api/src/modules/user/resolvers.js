@@ -7,6 +7,9 @@ import serverConfig from '../../config/server'
 import params from '../../config/params'
 import models from '../../setup/models'
 
+//TODO: 
+// ADD description, shippingAddress, and image to login resolver
+
 // Create
 export async function create(parentValue, { name, email, password }) {
   // Users exists with same email check
@@ -78,7 +81,7 @@ export async function getGenders() {
   return Object.values(params.user.gender)
 }
 
-// TODO: define updateUser 
+// TODO: define update 
 // export async function updateUser(parentValue, { id }) {
 //   const user = await models.user.findById(id)
 //   user.set('')

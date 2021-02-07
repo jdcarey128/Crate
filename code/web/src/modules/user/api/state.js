@@ -13,10 +13,10 @@ export const userInitialState = {
 // State
 
 // TODO: 
-// import in EDIT_USER
-// build case for EDIT_USER that returns updated information from BE mutation response
-// import in EDIT_USER_IMAGE 
-// build case for EDIT_USER_IMAGE that returns updated image from BE mutation response
+// import in UPDATE_USER
+// build case for UPDATE_USER that returns updated information from BE mutation response
+// import in IMAGE_UPLOAD 
+// build case for IMAGE_UPLOAD that returns updated image from BE multer request
 
 export default (state = userInitialState, action) => {
   switch (action.type) {
