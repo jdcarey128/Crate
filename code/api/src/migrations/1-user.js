@@ -16,6 +16,22 @@ module.exports = {
       password: {
         type: Sequelize.TEXT
       },
+// -------------------------------------------------------
+      // TODO: Need to edit user table by adding the following columns:
+
+      // image: {
+      //   type: Sequelize.??
+      // },
+      // description: {
+      //   type: Sequelize.TEXT
+      // },
+      // shippingAddress: {
+      //   type: Sequelize.TEXT
+      // },
+
+      // how to add columns to this table???
+// ---------------------------------------------------------
+
       role: {
         type: Sequelize.TEXT
       },

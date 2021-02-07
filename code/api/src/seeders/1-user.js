@@ -1,3 +1,5 @@
+// TODO: Seed more users with new data as well
+
 'use strict';
 
 const bcrypt = require('bcrypt');

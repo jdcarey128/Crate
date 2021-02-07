@@ -1,3 +1,5 @@
+// TODO: Seed more data, products will need to have a foreign key to orders
+
 'use strict';
 
 const params = require('../config/params');

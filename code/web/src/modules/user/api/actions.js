@@ -87,6 +87,21 @@ export function register(userDetails) {
   }
 }
 
+// -----------------------------------------
+// Update user details
+
+// export function update(userDetails) {
+//   return dispatch => {
+//     return axios.post(routeApi, mutation({
+//       operation: 'userUpdate',
+//       variables: userDetails,
+//       fields: ['id', 'name', 'email', 'description']
+//     }))
+//   }
+// }
+
+// --------------------------------------------
+
 // Log out user and remove token from localStorage
 export function logout() {
   return dispatch => {

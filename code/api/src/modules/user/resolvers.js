@@ -47,6 +47,10 @@ export async function login(parentValue, { email, password }) {
         id: userDetails.id,
         name: userDetails.name,
         email: userDetails.email,
+        // TODO: Add following attributes
+        // description: userDetails.description,
+        // image: userDetails.image,
+        // shippingAddress: userDetails.shippingAddress
         role: userDetails.role
       }
 
@@ -67,6 +71,24 @@ export async function getById(parentValue, { id }) {
 export async function getAll() {
   return await models.User.findAll()
 }
+
+// --------------------------------------
+// TODO: Add function to update user data
+// Update user
+// export async function update(parentValue, { id, name, email, description }) {
+//   return await models.Product.update(
+//     {
+//       id,
+//       name,
+//       email,
+//       description,
+//       image,
+//       shippingAddress
+//     },
+//     { where: { id } }
+//   )
+// }
+// --------------------------------------
 
 // Delete
 export async function remove(parentValue, { id }) {

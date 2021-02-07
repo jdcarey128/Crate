@@ -4,6 +4,7 @@ import Sequelize from 'sequelize'
 // App Imports
 import databaseConnection from './database'
 
+// TODO: Add order to models
 const models = {
   User: databaseConnection.import('../modules/user/model'),
   Product: databaseConnection.import('../modules/product/model'),

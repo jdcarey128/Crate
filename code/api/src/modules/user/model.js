@@ -12,11 +12,28 @@ module.exports = function(sequelize, DataTypes) {
     password: {
       type: DataTypes.TEXT
     },
+// ----------------------------------
+    // TODO: Add to user model:
+    // description: {
+    //   type: DataTypes.TEXT
+    // },
+    //
+    // image: {
+    //   type: DataTypes.TEXT
+    // },
+    //
+    // shippingAddress: {
+    //   type: DataTypes.TEXT
+    // },
+
+// -----------------------------------
+
     role: {
       type: DataTypes.TEXT
     }
   })
 
+// TODO: Add relationships here, I'm assuming in the same block as the existing one?
   User.associate = function(models) {
     User.hasMany(models.Subscription)
   }
