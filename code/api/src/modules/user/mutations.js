@@ -41,4 +41,4 @@ export const userRemove = {
   resolve: remove
 }
 
-//Add mutation for user description
+//Add mutation for editing user profile - I think this can lump the email and profile editing into one

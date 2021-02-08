@@ -1,4 +1,4 @@
-//will need to add an update resolver for user profile
+//will need to add an update resolver for user profile - this will include the profile and email
 
 // Imports
 import bcrypt from 'bcrypt'
