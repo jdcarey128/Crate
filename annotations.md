@@ -78,7 +78,7 @@ Files:
       - add description detail
       - userUpdate method
     * code/api/src/modules/user/types.js
-      - Add description to description type
+      - Add description to user type
     * code/api/src/seeders/user.js
       - Seed more users with new data as well
     * code/api/src/seeders/products.js
@@ -170,7 +170,7 @@ Files:
 
   BE:
     * code/api/src/migrations/orders.js
-     - Migrate orders table
+      - Migrate orders table
     * code/api/src/modules/order/model.js
       - order function with relationships
     * code/api/src/setup/models.js
@@ -193,15 +193,14 @@ Files:
       - import GraphQLObjectType, GraphQLString, GraphQLInt from graphql
       - orderType
       - export orderType
-    * code/api/src/setup/schema/mutations.js
-      - import order mutation
-      - order migration goes here
     * code/api/src/setup/schema/queries.js
       - import order query
       - order migration goes here
     * code/api/src/modules/user/types.js
       - import GraphQLList
       - Add userOrderType method and export
+
+      DO THE SAME FOR PRODUCTDELIVERIES
 
 ## User can edit delivery date
 FE:
