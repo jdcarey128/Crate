@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Profile from './Profile';
+import React, { Component } from 'react'
+import Profile from './Profile'
 
 class ProfileForm extends Component {
   constructor(props) {
@@ -14,6 +14,13 @@ class ProfileForm extends Component {
       },
       isLoading: true
     }
+  }
+  
+  render() {
+    return (
+      <div></div>
+    )
+
   }
 }
 
