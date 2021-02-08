@@ -34,5 +34,4 @@ export default {
     component: ProfileForm,
     auth: true
   }
-
 }
