@@ -29,7 +29,7 @@ export default {
     auth: true
   },
 
-  edit: {
+  profileForm: {
     path: '/user/profile-form',
     component: ProfileForm,
     auth: true
