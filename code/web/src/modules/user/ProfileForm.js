@@ -168,6 +168,7 @@ class ProfileForm extends Component {
                   <Icon size={1.2} style={{ color: white }}>remove_circle_outline</Icon> Cancel
                   </Button>
                 </Link>
+                
                 <Button type="submit" theme="primary" disabled={this.state.isLoading}>
                     <Icon size={1.2} style={{ color: white }}>check</Icon> Save
                 </Button>
