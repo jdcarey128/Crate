@@ -22,7 +22,27 @@ module.exports = {
         role: params.user.roles.user,
         createdAt: new Date(),
         updatedAt: new Date()
-      }
+      },
+      {
+        name: 'Fake Person',
+        email: 'fake_person@crate.com',
+        password: 'password',
+        role: params.user.roles.user,
+        description: 'I am a faker!',
+        shippingAddress: '123 Fake St., Boulder, CO 80303',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Not a real human',
+        email: 'im_not_real!@crate.com',
+        password: 'password',
+        role: params.user.roles.user,
+        description: 'I am actually a robot designed to buy clothes.',
+        shippingAddress: '123 Robot Ave., Denver, CO 80202',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ])
   },
 
