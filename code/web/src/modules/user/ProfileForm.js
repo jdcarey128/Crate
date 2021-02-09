@@ -27,9 +27,9 @@ class ProfileForm extends Component {
       userDetails: {
         id: 0,
         image: '',
-        email: '',
-        address: '',
-        description: ''
+        email: this.props.user.details.email,
+        address: this.props.user.details.address || '',
+        description: this.props.user.details.description || ''
       },
       isLoading: false
     }
@@ -114,7 +114,7 @@ class ProfileForm extends Component {
                   required="required"
                   name="email"
                   autoComplete="off"
-                  value={this.state.email}
+                  value={this.state.userDetails.email}
                   onChange={this.onChange}
                 />
 
@@ -126,7 +126,7 @@ class ProfileForm extends Component {
                   required="required"
                   name="address"
                   autoComplete="off"
-                  value={this.state.address}
+                  value={this.state.userDetails.address}
                   onChange={this.onChange}
                 />
 
@@ -138,7 +138,7 @@ class ProfileForm extends Component {
                   required="required"
                   name="description"
                   autoComplete="off"
-                  value={this.state.description}
+                  value={this.state.userDetails.description}
                   onChange={this.onChange}
                 />
 
@@ -196,7 +196,7 @@ ProfileForm.propTypes = {
 
 function profileFormState(state) {
   return {
-    userDetails: state.user
+    user: state.user
   }
 }
 
