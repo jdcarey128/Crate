@@ -15,7 +15,8 @@ import { white } from "../../ui/common/colors"
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
-import { routeImage } from "../../setup/routes"
+import { updateUserInfo } from './api/actions'
+import { routeImage } from '../../setup/routes'
 import { renderIf } from '../../setup/helpers'
 import { upload, messageShow, messageHide } from '../common/api/actions'
 
@@ -96,7 +97,7 @@ class ProfileForm extends Component {
 
     // Save details
 
-    // this.props.profileUpdate(this.state.userDetails)
+    // this.props.updateUserInfo(this.state.userDetails)
     //   .then(response => {
     //     this.setState({
     //       isLoading: false
