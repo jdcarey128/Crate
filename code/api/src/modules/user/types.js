@@ -1,5 +1,8 @@
 // Imports
-import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
+import { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } from 'graphql'
+
+// App Import
+import { OrderType } from '../order/types'
 
 // User type
 const UserType = new GraphQLObjectType({
@@ -42,4 +45,14 @@ const UserGenderType = new GraphQLObjectType({
   })
 })
 
-export { UserType, UserLoginType, UserGenderType }
+// User Orders type
+const UserOrdersType = new GraphQLObjectType({
+  name: 'userOrders',
+  description: 'User Order Type',
+
+  fields: () => ({
+    orders: { type: new GraphQLList( OrderType )}
+  })
+})
+
+export { UserType, UserLoginType, UserGenderType, UserOrdersType }
