@@ -27,6 +27,10 @@ class ProfileForm extends Component {
       isLoading: true
     }
   }
+
+  onChange = (event) => {
+    
+  }
   
   render() {
     return (
@@ -43,7 +47,7 @@ class ProfileForm extends Component {
         <Grid alignCenter={true} style={{ padding: '1em' }}>
             <GridCell>
               <H4 font="secondary" style={{ marginBottom: '1em', textAlign: 'center' }}>
-                
+                Edit Profile Details
               </H4>
 
             {/* Form */}
@@ -73,10 +77,26 @@ class ProfileForm extends Component {
                   onChange={this.onChange}
                 />
 
+                {/* Description */}
+                <Input
+                  type="text"
+                  fullWidth={true}
+                  placeholder="Description"
+                  required="required"
+                  name="description"
+                  autoComplete="off"
+                  value={this.state.description}
+                  onChange={this.onChange}
+                />
+
               </div>
+
+            
+              
             </form>
           </GridCell>
         </Grid>
+
       </div>
     )
   }
