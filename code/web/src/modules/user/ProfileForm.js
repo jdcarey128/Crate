@@ -9,6 +9,8 @@ import { H3, H4 } from '../../ui/typography'
 import Icon from '../../ui/icon'
 import Button from '../../ui/button'
 import { grey, grey2 } from '../../ui/common/colors'
+import { white } from "../../ui/common/colors"
+
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
@@ -156,7 +158,25 @@ class ProfileForm extends Component {
 
               </div>
 
-            
+              {/* Form submit */}
+
+              <Grid>
+                <GridCell style={{ padding: '2em', textAlign: 'center' }}>
+                {/* <div style={{ marginTop: '2em', textAlign: 'center' }}> */}
+                <Link to={userRoutes.profile.path} style={{ marginRight: '1em' }}>
+                  <Button type="submit" theme="secondary"  disabled={this.state.isLoading}>
+                  <Icon size={1.2} style={{ color: white }}>remove_circle_outline</Icon> Cancel
+                  </Button>
+                </Link>
+                <Button type="submit" theme="primary" disabled={this.state.isLoading}>
+                    <Icon size={1.2} style={{ color: white }}>check</Icon> Save
+                </Button>
+                {/* </div> */}
+
+                </GridCell>
+              </Grid>
+
+
               
             </form>
           </GridCell>
