@@ -40,36 +40,43 @@ class ProfileForm extends Component {
           </GridCell>
         </Grid>
 
-        {/* Form */}
-        <form onSubmit={this.onSubmit}>
-          <div style={{ width: '25em', margin: '0 auto' }}>
-            {/* Email */}
-            <Input
-              type="text"
-              fullWidth={true}
-              placeholder="Email"
-              required="required"
-              name="email"
-              autoComplete="off"
-              value={this.state.email}
-              onChange={this.onChange}
-            />
+        <Grid alignCenter={true} style={{ padding: '1em' }}>
+            <GridCell>
+              <H4 font="secondary" style={{ marginBottom: '1em', textAlign: 'center' }}>
+                
+              </H4>
 
-            {/* Address */}
-            <Input
-              type="text"
-              fullWidth={true}
-              placeholder="Address"
-              required="required"
-              name="address"
-              autoComplete="off"
-              value={this.state.address}
-              onChange={this.onChange}
-            />
+            {/* Form */}
+            <form onSubmit={this.onSubmit}>
+              <div style={{ width: '25em', margin: '0 auto' }}>
+                {/* Email */}
+                <Input
+                  type="text"
+                  fullWidth={true}
+                  placeholder="Email"
+                  required="required"
+                  name="email"
+                  autoComplete="off"
+                  value={this.state.email}
+                  onChange={this.onChange}
+                />
 
-           </div>
-        </form>
+                {/* Address */}
+                <Input
+                  type="text"
+                  fullWidth={true}
+                  placeholder="Address"
+                  required="required"
+                  name="address"
+                  autoComplete="off"
+                  value={this.state.address}
+                  onChange={this.onChange}
+                />
 
+              </div>
+            </form>
+          </GridCell>
+        </Grid>
       </div>
     )
   }
