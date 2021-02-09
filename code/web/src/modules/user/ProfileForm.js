@@ -109,7 +109,7 @@ class ProfileForm extends Component {
                 <Input
                   type="text"
                   fullWidth={true}
-                  placeholder="Email"
+                  placeholder='Email'
                   required="required"
                   name="email"
                   autoComplete="off"
