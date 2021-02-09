@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 // UI Imports
@@ -41,7 +42,7 @@ class ProfileForm extends Component {
     this.setState({
       userDetails
     })
-  } 
+  }
 
   onUpload = (event) => {
     this.props.messageShow('Uploading file, please wait...')
@@ -83,7 +84,7 @@ class ProfileForm extends Component {
 
       })
   }
-  
+
   render() {
     return (
       <div>
@@ -168,7 +169,7 @@ class ProfileForm extends Component {
                   <Icon size={1.2} style={{ color: white }}>remove_circle_outline</Icon> Cancel
                   </Button>
                 </Link>
-                
+
                 <Button type="submit" theme="primary" disabled={this.state.isLoading}>
                     <Icon size={1.2} style={{ color: white }}>check</Icon> Save
                 </Button>
@@ -178,7 +179,7 @@ class ProfileForm extends Component {
               </Grid>
 
 
-              
+
             </form>
           </GridCell>
         </Grid>
@@ -188,9 +189,14 @@ class ProfileForm extends Component {
   }
 }
 
+// Component Properties
+ProfileForm.propTypes = {
+  user: PropTypes.object.isRequired
+}
+
 function profileFormState(state) {
   return {
-    userDetails: state.userDetails
+    userDetails: state.user
   }
 }
 
