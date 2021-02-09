@@ -12,6 +12,9 @@ import { grey, grey2 } from '../../ui/common/colors'
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
+import { routeImage } from "../../setup/routes"
+import { renderIf } from '../../setup/helpers'
+
 
 class ProfileForm extends Component {
   constructor(props) {
@@ -31,11 +34,15 @@ class ProfileForm extends Component {
   onChange = (event) => {
     let userDetails = this.state.userDetails
     userDetails[event.target.name] = event.target.value
-    
+
     this.setState({
       userDetails
     })
   } 
+
+  onUpload = () => {
+
+  }
   
   render() {
     return (
@@ -93,6 +100,21 @@ class ProfileForm extends Component {
                   value={this.state.description}
                   onChange={this.onChange}
                 />
+
+                {/* Upload File */}
+                <div style={{ marginTop: '1em' }}>
+                  <input
+                    type="file"
+                    onChange={this.onUpload}
+                    required={this.state.userDetails.image.id === 0}
+                  />
+                </div>
+
+                {/* Uploaded image */}
+                {renderIf(this.state.userDetails.image !== '', () => (
+                  <img src={routeImage + this.state.userDetails.image} alt="Profile Image"
+                    style={{ width: 200, marginTop: '1em' }}/>
+                ))}
 
               </div>
 
