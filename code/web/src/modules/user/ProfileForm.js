@@ -29,8 +29,13 @@ class ProfileForm extends Component {
   }
 
   onChange = (event) => {
+    let userDetails = this.state.userDetails
+    userDetails[event.target.name] = event.target.value
     
-  }
+    this.setState({
+      userDetails
+    })
+  } 
   
   render() {
     return (
