@@ -14,6 +14,7 @@ import { grey, grey2 } from '../../ui/common/colors'
 import userRoutes from '../../setup/routes/user'
 import { routeImage } from "../../setup/routes"
 import { renderIf } from '../../setup/helpers'
+import { upload, messageShow, messageHide } from '../common/api/actions'
 
 
 class ProfileForm extends Component {
@@ -27,7 +28,7 @@ class ProfileForm extends Component {
         address: '',
         description: ''
       },
-      isLoading: true
+      isLoading: false
     }
   }
 
@@ -40,8 +41,45 @@ class ProfileForm extends Component {
     })
   } 
 
-  onUpload = () => {
+  onUpload = (event) => {
+    this.props.messageShow('Uploading file, please wait...')
 
+    this.setState({
+      isLoading: true
+    })
+
+    let profileImage = new FormData()
+    profileImage.append('file', event.target.files[0])
+
+    this.props.upload(profileImage)
+      .then(response => {
+        if (response.status === 200) {
+          this.props.messageShow('File uploaded successfully.')
+
+          let userDetails = this.state.userDetails
+          userDetails.image = `/images/uploads/${ response.data.file }`
+
+          this.setState({
+            userDetails
+          })
+        } else {
+          this.props.messageShow('Please try again.')
+        }
+      })
+      .catch(error => {
+        this.props.messageShow('There was some error. Please try again.')
+
+      })
+      .then(() => {
+        this.setState({
+          isLoading: false
+        })
+
+        window.setTimeout(() => {
+          this.props.messageHide()
+        }, 5000)
+
+      })
   }
   
   render() {
@@ -106,7 +144,7 @@ class ProfileForm extends Component {
                   <input
                     type="file"
                     onChange={this.onUpload}
-                    required={this.state.userDetails.image.id === 0}
+                    // required={this.state.userDetails.image.id === 0}
                   />
                 </div>
 
@@ -135,4 +173,4 @@ function profileFormState(state) {
   }
 }
 
-export default connect(profileFormState)(ProfileForm)
+export default connect(profileFormState, { upload, messageShow, messageHide })(ProfileForm)
