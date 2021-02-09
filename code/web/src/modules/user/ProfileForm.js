@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 // UI Imports
 import { Grid, GridCell } from '../../ui/grid'
+import Input from '../../ui/input/Input'
 import { H3, H4 } from '../../ui/typography'
 import Icon from '../../ui/icon'
 import Button from '../../ui/button'
@@ -38,6 +39,36 @@ class ProfileForm extends Component {
             </Link>
           </GridCell>
         </Grid>
+
+        {/* Form */}
+        <form onSubmit={this.onSubmit}>
+          <div style={{ width: '25em', margin: '0 auto' }}>
+            {/* Email */}
+            <Input
+              type="text"
+              fullWidth={true}
+              placeholder="Email"
+              required="required"
+              name="email"
+              autoComplete="off"
+              value={this.state.email}
+              onChange={this.onChange}
+            />
+
+            {/* Address */}
+            <Input
+              type="text"
+              fullWidth={true}
+              placeholder="Address"
+              required="required"
+              name="address"
+              autoComplete="off"
+              value={this.state.address}
+              onChange={this.onChange}
+            />
+
+           </div>
+        </form>
 
       </div>
     )
