@@ -85,6 +85,45 @@ class ProfileForm extends Component {
       })
   }
 
+  onSubmit = (event) => {
+    event.preventDefault()
+
+    this.setState({
+      isLoading: true
+    })
+
+    this.props.messageShow('Saving details, please wait...')
+
+    // Save details
+
+    // this.props.profileUpdate(this.state.userDetails)
+    //   .then(response => {
+    //     this.setState({
+    //       isLoading: false
+    //     })
+
+      //   if (response.data.errors && response.data.errors.length > 0) {
+      //     this.props.messageShow(response.data.errors[0].message)
+      //   } else {
+      //     this.props.messageShow('Product saved successfully.')
+
+      //     this.props.history.push(admin.productList.path)
+      //   }
+      // })
+      // .catch(error => {
+      //   this.props.messageShow('There was some error. Please try again.')
+
+      //   this.setState({
+      //     isLoading: false
+      //   })
+      // })
+      // .then(() => {
+      //   window.setTimeout(() => {
+      //     this.props.messageHide()
+      //   }, 5000)
+      // })
+  }
+
   render() {
     return (
       <div>
@@ -123,7 +162,7 @@ class ProfileForm extends Component {
                   type="text"
                   fullWidth={true}
                   placeholder="Address"
-                  required="required"
+                  // required="required"
                   name="address"
                   autoComplete="off"
                   value={this.state.userDetails.address}
@@ -135,7 +174,7 @@ class ProfileForm extends Component {
                   type="text"
                   fullWidth={true}
                   placeholder="Description"
-                  required="required"
+                  // required="required"
                   name="description"
                   autoComplete="off"
                   value={this.state.userDetails.description}
