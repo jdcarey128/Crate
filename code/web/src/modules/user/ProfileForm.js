@@ -29,7 +29,7 @@ class ProfileForm extends Component {
         id: 0,
         image: '',
         email: this.props.user.details.email,
-        address: this.props.user.details.address || '',
+        shippingAddress: this.props.user.details.address || '',
         description: this.props.user.details.description || ''
       },
       isLoading: false
@@ -57,7 +57,7 @@ class ProfileForm extends Component {
 
     this.props.upload(profileImage)
       .then(response => {
-        if (response.status === 200) {
+        if (response.ok) {
           this.props.messageShow('File uploaded successfully.')
 
           let userDetails = this.state.userDetails
@@ -66,23 +66,19 @@ class ProfileForm extends Component {
           this.setState({
             userDetails
           })
+          this.setState({
+            isLoading: false
+          })
+    
+          window.setTimeout(() => {
+            this.props.messageHide()
+          }, 5000)
         } else {
-          this.props.messageShow('Please try again.')
+          throw new Error('Please try again')
         }
       })
       .catch(error => {
         this.props.messageShow('There was some error. Please try again.')
-
-      })
-      .then(() => {
-        this.setState({
-          isLoading: false
-        })
-
-        window.setTimeout(() => {
-          this.props.messageHide()
-        }, 5000)
-
       })
   }
 
@@ -132,7 +128,7 @@ class ProfileForm extends Component {
         <Grid alignCenter={true} style={{ padding: '1em' }}>
           <GridCell style={{ textAlign: 'left' }}>
             <Link to={userRoutes.profile.path}>
-              <Button><Icon size={1.2}>arrow_back</Icon> Back</Button>
+              <Button><Icon size={1.2}>arrow_back</Icon>Back</Button>
             </Link>
           </GridCell>
         </Grid>
@@ -162,11 +158,11 @@ class ProfileForm extends Component {
                 <Input
                   type="text"
                   fullWidth={true}
-                  placeholder="Address"
+                  placeholder="Shipping Address"
                   // required="required"
-                  name="address"
+                  name="shippingAddress"
                   autoComplete="off"
-                  value={this.state.userDetails.address}
+                  value={this.state.userDetails.shippingAddress}
                   onChange={this.onChange}
                 />
 
@@ -196,7 +192,7 @@ class ProfileForm extends Component {
                   <img src={routeImage + this.state.userDetails.image} alt="Profile Image"
                     style={{ width: 200, marginTop: '1em' }}/>
                 ))}
-
+               
               </div>
 
               {/* Form submit */}
