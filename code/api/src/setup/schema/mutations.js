@@ -18,7 +18,6 @@ const mutation = new GraphQLObjectType({
     ...product,
     ...crate,
     ...subscription,
-    ...order
   }
 })
 
