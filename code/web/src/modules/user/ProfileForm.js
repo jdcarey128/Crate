@@ -66,6 +66,7 @@ class ProfileForm extends Component {
           this.setState({
             userDetails
           })
+          
           this.setState({
             isLoading: false
           })
@@ -142,6 +143,7 @@ class ProfileForm extends Component {
             {/* Form */}
             <form onSubmit={this.onSubmit}>
               <div style={{ width: '25em', margin: '0 auto' }}>
+
                 {/* Email */}
                 <Input
                   type="text"
@@ -159,7 +161,6 @@ class ProfileForm extends Component {
                   type="text"
                   fullWidth={true}
                   placeholder="Shipping Address"
-                  // required="required"
                   name="shippingAddress"
                   autoComplete="off"
                   value={this.state.userDetails.shippingAddress}
@@ -171,7 +172,6 @@ class ProfileForm extends Component {
                   type="text"
                   fullWidth={true}
                   placeholder="Description"
-                  // required="required"
                   name="description"
                   autoComplete="off"
                   value={this.state.userDetails.description}
@@ -188,6 +188,8 @@ class ProfileForm extends Component {
                 </div>
 
                 {/* Uploaded image */}
+
+                {/* TODO: change string to default image */}
                 {renderIf(this.state.userDetails.image !== '', () => (
                   <img src={routeImage + this.state.userDetails.image} alt="Profile Image"
                     style={{ width: 200, marginTop: '1em' }}/>
@@ -199,7 +201,6 @@ class ProfileForm extends Component {
 
               <Grid>
                 <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-                {/* <div style={{ marginTop: '2em', textAlign: 'center' }}> */}
                 <Link to={userRoutes.profile.path} style={{ marginRight: '1em' }}>
                   <Button type="submit" theme="secondary"  disabled={this.state.isLoading}>
                   <Icon size={1.2} style={{ color: white }}>remove_circle_outline</Icon> Cancel
@@ -209,12 +210,9 @@ class ProfileForm extends Component {
                 <Button type="submit" theme="primary" disabled={this.state.isLoading}>
                     <Icon size={1.2} style={{ color: white }}>check</Icon> Save
                 </Button>
-                {/* </div> */}
 
                 </GridCell>
               </Grid>
-
-
 
             </form>
           </GridCell>
