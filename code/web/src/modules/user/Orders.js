@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
@@ -13,23 +13,28 @@ import { grey, grey2 } from '../../ui/common/colors'
 // App Imports
 import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
+import OrderCard from './OrderCard'
 
 // Component
-const Orders = (props) => (
-  <div>
-    {/* SEO */}
-    <Helmet>
-      <title>My Orders - Crate</title>
-    </Helmet>
+class Orders extends Component {
+  render() {
+    return (
+      <div>
+        {/* SEO */}
+        <Helmet>
+          <title>My Orders - Crate</title>
+        </Helmet>
 
-    {/* Top title bar */}
-    <Grid style={{ backgroundColor: grey }}>
-      <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-        <H3 font="secondary">My Orders</H3>
-      </GridCell>
-    </Grid>
-  </div>
-)
+        {/* Top title bar */}
+        <Grid style={{ backgroundColor: grey }}>
+          <GridCell style={{ padding: '2em', textAlign: 'center' }}>
+            <H3 font="secondary">My Orders</H3>
+          </GridCell>
+        </Grid>
+      </div>
+    )
+  }
+}
 
 // Component Properties
 Orders.propTypes = {
