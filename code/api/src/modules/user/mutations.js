@@ -38,3 +38,31 @@ export const userRemove = {
   },
   resolve: remove
 }
+
+// Update
+export const userUpdate = {
+  type: UserType,
+  args: {
+
+    email: {
+      name: 'email',
+      type: GraphQLString
+    },
+
+    description: {
+      name: 'description',
+      type: GraphQLString
+    },
+
+    image: {
+      name: 'image',
+      type: GraphQLString
+    },
+
+    shippingAddress: {
+      name: 'shippingAddress',
+      type: GraphQLString
+    }
+  },
+  resolve: update
+}
