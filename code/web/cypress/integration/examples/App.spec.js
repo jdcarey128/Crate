@@ -1,0 +1,40 @@
+describe('App', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:3000/')
+    cy.get('button')
+    cy.contains('Next')
+    .click()
+    cy.get('button')
+    cy.contains('Next')
+    .click()
+    cy.get('button')
+    cy.contains('Next')
+    .click()
+    cy.get('.jsx-1228826222')
+    .click()
+  })
+
+  it("should display a title and a vav bar", () => {
+    cy.contains('Crate')
+    cy.contains('nav')
+  })
+
+  it("should be able to log in", () => {
+    cy.get('[href="/user/login"]')
+      .click()
+    cy.get('input')
+      .first()
+      .type("user@crate.com")
+    cy.get('input')
+      .last()
+      .type("123456")
+    cy.get('button')
+      .contains('Login')
+      .click()
+    cy.contains('Logging in, please wait...')
+    cy.contains('Crates for everyone')
+    cy.contains('Clothes for Men')
+  })
+
+  it("should be able to sign up")
+})
