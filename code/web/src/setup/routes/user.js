@@ -4,6 +4,7 @@ import Signup from '../../modules/user/Signup'
 import Profile from '../../modules/user/Profile'
 import Subscriptions from '../../modules/user/Subscriptions'
 import ProfileForm from '../../modules/user/ProfileForm'
+import Orders from '../../modules/user/Orders'
 
 // User routes
 export default {
@@ -33,5 +34,11 @@ export default {
     path: '/user/profile-form',
     component: ProfileForm,
     auth: true
-  }
+  },
+
+  orders: {
+    path: '/user/orders',
+    component: Orders,
+    auth: true
+  },
 }
