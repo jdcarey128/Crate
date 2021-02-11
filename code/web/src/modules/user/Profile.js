@@ -35,9 +35,16 @@ const Profile = (props) => (
         <H4 style={{ marginBottom: '0.5em' }}>{props.user.details.name}</H4>
 
         <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.email}</p>
+        {/* TODO: <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.shippingAddress}</p> */}
+        {/* TODO: <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.description}</p> */}
+        {/* TODO: img */}
 
         <Link to={userRoutes.subscriptions.path}>
           <Button theme="primary">Subscriptions</Button>
+        </Link>
+
+        <Link to={userRoutes.profileForm.path} style={{ marginLeft: '1em' }}>
+          <Button theme="primary">Edit Profile</Button>
         </Link>
 
         <Button theme="secondary" onClick={props.logout} style={{ marginLeft: '1em' }}>Logout</Button>
