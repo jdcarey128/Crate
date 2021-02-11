@@ -60,6 +60,8 @@ const Header = (props) => {
 
                 <MenuItem to={user.subscriptions.path}>Subscriptions</MenuItem>
 
+                <MenuItem to={user.orders.path}>Orders</MenuItem>
+
                 <MenuItem to={user.profile.path}>Profile</MenuItem>
               </Menu>
               :
