@@ -118,28 +118,28 @@ class ProfileForm extends Component {
 
     // Save details
 
-    this.props.updateUserInfo(this.state.userDetails)
-      .then(response => {
-        this.setState({
-          isLoading: false
-        })
+    // this.props.updateUserInfo(this.state.userDetails)
+    //   .then(response => {
+    //     this.setState({
+    //       isLoading: false
+    //     })
 
-        if (response.data.errors && response.data.errors.length > 0) {
-          this.props.messageShow(response.data.errors[0].message)
-        } else {
-          this.props.messageShow('Profile saved successfully.')
-        }
-        window.setTimeout(() => {
-          this.props.messageHide()
-        }, 5000)
-      })
-      .catch(error => {
-        this.props.messageShow('There was some error. Please try again.')
+    //     if (response.data.errors && response.data.errors.length > 0) {
+    //       this.props.messageShow(response.data.errors[0].message)
+    //     } else {
+    //       this.props.messageShow('Profile saved successfully.')
+    //     }
+    //     window.setTimeout(() => {
+    //       this.props.messageHide()
+    //     }, 5000)
+    //   })
+    //   .catch(error => {
+    //     this.props.messageShow('There was some error. Please try again.')
 
-        this.setState({
-          isLoading: false
-        })
-      })
+    //     this.setState({
+    //       isLoading: false
+    //     })
+    //   })
   }
 
   render() {
