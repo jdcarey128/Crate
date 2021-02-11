@@ -53,6 +53,32 @@ describe('user login', () => {
     done();
   })
 
-  // need sad path tests for user login 
+  it('returns error for incorrect email', async (done) => {
+    var email = 'faker@example.com';
+    var passwordInput = 'password';
+    
+    const response = await request(server)
+      .post('/')
+      .send({query: `query {userLogin(email: "${email}", password: "${passwordInput}") {user {id email description shippingAddress image} token}}`})
+      .expect(200)
+
+    expect(response.body.errors[0].message).toBe(`We do not have any user registered with ${ email } email address. Please signup.`)
+
+    done();
+  })
+
+  it('returns illadvised error for incorrect password', async (done) => {
+    var email = 'fake@example.com';
+    var passwordInput = 'password123';
+    
+    const response = await request(server)
+      .post('/')
+      .send({query: `query {userLogin(email: "${email}", password: "${passwordInput}") {user {id email description shippingAddress image} token}}`})
+      .expect(200)
+
+    expect(response.body.errors[0].message).toBe(`Sorry, the password you entered is incorrect. Please try again.`)
+
+    done();
+  })
 
 })
