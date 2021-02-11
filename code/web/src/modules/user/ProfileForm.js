@@ -28,12 +28,36 @@ class ProfileForm extends Component {
       userDetails: {
         id: 0,
         image: '',
-        email: this.props.user.details.email,
-        shippingAddress: this.props.user.details.address || '',
-        description: this.props.user.details.description || ''
+        email: '',
+        shippingAddress: '',
+        description: ''
       },
       isLoading: false
     }
+  }
+
+  componentDidMount() {
+    let shippingAddress = '';
+    let description = '';
+    let userDetails; 
+
+    if (this.props.user.details.address) {
+      shippingAddress = this.props.user.details.address
+    } 
+
+    if (this.props.user.details.description) {
+      description = this.props.user.details.description
+    }
+
+    userDetails = {
+      id: 0,
+      image: '',
+      email: this.props.user.details.email,
+      shippingAddress: shippingAddress,
+      description: description
+    }
+
+    this.setState({ userDetails })
   }
 
   onChange = (event) => {
@@ -94,32 +118,28 @@ class ProfileForm extends Component {
 
     // Save details
 
-    // this.props.updateUserInfo(this.state.userDetails)
-    //   .then(response => {
-    //     this.setState({
-    //       isLoading: false
-    //     })
+    this.props.updateUserInfo(this.state.userDetails)
+      .then(response => {
+        this.setState({
+          isLoading: false
+        })
 
-      //   if (response.data.errors && response.data.errors.length > 0) {
-      //     this.props.messageShow(response.data.errors[0].message)
-      //   } else {
-      //     this.props.messageShow('Product saved successfully.')
+        if (response.data.errors && response.data.errors.length > 0) {
+          this.props.messageShow(response.data.errors[0].message)
+        } else {
+          this.props.messageShow('Profile saved successfully.')
+        }
+        window.setTimeout(() => {
+          this.props.messageHide()
+        }, 5000)
+      })
+      .catch(error => {
+        this.props.messageShow('There was some error. Please try again.')
 
-      //     this.props.history.push(admin.productList.path)
-      //   }
-      // })
-      // .catch(error => {
-      //   this.props.messageShow('There was some error. Please try again.')
-
-      //   this.setState({
-      //     isLoading: false
-      //   })
-      // })
-      // .then(() => {
-      //   window.setTimeout(() => {
-      //     this.props.messageHide()
-      //   }, 5000)
-      // })
+        this.setState({
+          isLoading: false
+        })
+      })
   }
 
   render() {
