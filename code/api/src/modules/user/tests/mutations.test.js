@@ -31,12 +31,12 @@ describe('user login', () => {
     const response = await request(server)
       .post('/')
       .send({
-        query: '{users{email description image shippingAddress}}'
+        query: 'mutation{userUpdate(email: "test@test.com", description: "test description" ) {email description image shippingAddress}}'
       })
       .expect(200)
 
-    expect(response.body.data.users.length).toBe(4)
-    expect(response.body.data.users[0].email).toBe('admin@crate.com')
+    //expect(response.body.data.users.length).toBe(4)
+    expect(response.body).toBe('admin@crate.com')
     expect(response.body.data.users[0].description).toBe(null)
     expect(response.body.data.users[0].image).toBe('/images/stock/default_profile.jpg')
     expect(response.body.data.users[0].shippingAddress).toBe(null)
