@@ -27,7 +27,7 @@ describe('user login', () => {
     done();
   });
 
-  it('can update user profile', async (done) => {
+  xit('can update user profile', async (done) => {
     var email = 'test@test.com'
     var description = 'test description'
     var id = 2

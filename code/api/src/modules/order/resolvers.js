@@ -11,19 +11,21 @@ export async function getAll() {
 
 // Get Orders by User
 export async function getByUser(parentValue, {}, { auth }) {
-  if(auth.user && auth.user.id > 0) {
-    return await models.Order.findAll({
+  // if(auth.user && auth.user.id > 0) {
+    return await models.Order.findAll({ raw: true,
       where: {
         userId: auth.user.id
       },
       include: [
         {model: models.User, as: 'user' },
-        {model: models.Crate, as: 'crate' }
+        {model: models.Crate, as: 'crate' },
       ]
     })
-  } else {
-    throw new Error('Order does not exist')
-  }
+  // } else {
+  //   throw new Error('Order does not exist')
+  // }
 }
 
-// , include: [ etc. ]
+// {model: models.Order, as: 'order', include: [
+//   {model: productDelivery, as : 'productDelivery'}
+// ]}

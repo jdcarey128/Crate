@@ -1,29 +1,39 @@
 import { request, express, graphqlHTTP, schema, connection } from '../../../setup/test_helper'
 
+import serverConfig from '../../../config/server.json'
+import models from '../../../setup/models'
+import authentication from '../../../setup/authentication'
+
 describe('orders by user', () => {
-  let server = express();
+  let server;
   let token;
   let userTest;
+  let user1;
 
-  beforeAll(() => {
-    userTest = await models.User.create(name: 'Test Subject', password: 'password')
+  beforeAll(async () => {
+    // userTest = await models.User.create({name: 'Test Subject', email: 'test_subject@gmail.com', password: 'password'})
+    var userTest = await models.User.findOne({raw: true, where: {email: 'fake@example.com'}})
+    // user1 = await userTest
 
+    server = express();
+    server.use(authentication);
     server.use(
       '/',
       graphqlHTTP({
         schema: schema,
         graphiql: false,
-        context: (
+        context: {
           auth: {
             user: userTest
           }
-        )
+        }
       })
-    )
+    );
 
   })
 
-  afterAll(done => {
+  afterAll(async() => {
+    await models.User.destroy({ where: {id: userTest.id} })
     connection.close();
     done();
   });
@@ -42,14 +52,14 @@ describe('orders by user', () => {
   } )
 
   it("returns all user orders with product delivery and product info", async(done) =>{
-    // var userId = 4
     const response = await request(server)
     .post('/')
-    .send({query: `query { ordersByUser{deliveryDate deliveryStatus }}`})
-    console.log(response.body)
+    .set('Content-type', 'application/json')
+    .send({query: '{ ordersByUser { deliveryDate deliveryStatus }}'})
     .expect(200)
+    console.log(response.body.data)
 
-    var orders = response.data.userOrders.orders
+    var orders = response.body.data.ordersByUser
     expect(orders[0].deliveryDate).toBe("3/12/21")
     expect(orders[0].deliveryStatus).toBe("scheduled")
     expect(orders[3].deliveryDate).toBe("12/12/20")
