@@ -3,7 +3,7 @@ import { GraphQLInt, GraphQLString, GraphQLList } from 'graphql'
 
 // App Imports
 import { UserType, UserLoginType, UserGenderType } from './types'
-import { getAll, getById, login, getGenders } from './resolvers'
+import { getAll, getById, login, getGenders, getOrders } from './resolvers'
 
 // All
 export const users = {
@@ -47,3 +47,9 @@ export const userGenders = {
   type: new GraphQLList(UserGenderType),
   resolve: getGenders
 }
+
+// Orders
+// export const userOrders = {
+//   type: new GraphQLList(UserOrdersType),
+//   resolve: getOrders
+// }
