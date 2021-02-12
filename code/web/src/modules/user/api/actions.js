@@ -96,29 +96,16 @@ export function updateUserInfo(userDetails) {
       fields: ['id, image, email, shippingAddress, description']
     }))
     .then(response => {
-      let error = ''
-      console.log('response', response)
       if (!response.status === 200) {
         throw new Error('Whoops, something went wrong')
       } else {
         const user = response.data.data.userUpdate
-        console.log('user', user)
 
         return dispatch({ 
           type: UPDATE_USER,
           user,
         })
       }
-    //   dispatch({
-    //     type: LOGIN_RESPONSE,
-    //     error
-    //   })
-    // })
-    // .catch(error => {
-    //   dispatch({
-    //     type: LOGIN_RESPONSE,
-    //     error: 'Please try again'
-    //   })
     })
   }
 }
