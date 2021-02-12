@@ -50,6 +50,7 @@ describe('orders by user', () => {
     .post('/')
     .send({query: '{ ordersByUser { deliveryDate deliveryStatus crate { id name description } user { id name } productDeliveries { returned product { name description } }}}'})
     .expect(200)
+    console.log(response.body.data)
 
     var orders = response.body.data.ordersByUser
     expect(orders[0].deliveryDate).toBe("3/12/21")

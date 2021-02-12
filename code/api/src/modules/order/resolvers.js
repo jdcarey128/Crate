@@ -12,7 +12,7 @@ export async function getAll() {
 // Get Orders by User
 export async function getByUser(parentValue, {}, { auth }) {
   if(auth.user && auth.user.id > 0) {
-    return await models.Order.findAll({
+    return await models.Order.findAll({ raw: true,
       where: {
         userId: auth.user.id
       },
@@ -28,5 +28,3 @@ export async function getByUser(parentValue, {}, { auth }) {
     throw new Error('Order does not exist')
   }
 }
-
-// , include: [ etc. ]
