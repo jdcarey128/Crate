@@ -11,6 +11,7 @@ export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
+export const UPDATE_USER = 'AUTH/UPDATE_USER'
 
 // Actions
 
@@ -88,15 +89,40 @@ export function register(userDetails) {
 }
 
 export function updateUserInfo(userDetails) {
-  console.log(userDetails)
   return dispatch => {
     return axios.post(routeApi, mutation({
       operation: 'userUpdate',
       variables: userDetails,
       fields: ['id, image, email, shippingAddress, description']
     }))
+    .then(response => {
+      let error = ''
+
+      if (response.data.errors && response.data.errors.length > 0) {
+        error = response.data.errors[0].message
+      } else {
+        const user = response.data.data.userUpdate
+        console.log('passes the if')
+
+        return dispatch({ 
+          type: UPDATE_USER,
+          user,
+        })
+      }
+    //   dispatch({
+    //     type: LOGIN_RESPONSE,
+    //     error
+    //   })
+    // })
+    // .catch(error => {
+    //   dispatch({
+    //     type: LOGIN_RESPONSE,
+    //     error: 'Please try again'
+    //   })
+    })
   }
 }
+
 
 // Log out user and remove token from localStorage
 export function logout() {

@@ -119,6 +119,7 @@ class ProfileForm extends Component {
 
     this.props.updateUserInfo(this.state.userDetails)
       .then(response => {
+        console.log('response', response)
         this.setState({
           isLoading: false
         })
@@ -128,17 +129,20 @@ class ProfileForm extends Component {
         } else {
           this.props.messageShow('Profile saved successfully.')
         }
-        window.setTimeout(() => {
-          this.props.messageHide()
-        }, 5000)
-      })
-      .catch(error => {
-        this.props.messageShow('There was some error. Please try again.')
 
-        this.setState({
-          isLoading: false
-        })
       })
+      // .catch(error => {
+      //   console.log('error', error)
+      //   this.props.messageShow('There was some error. Please try again.')
+      //   this.setState({
+      //     isLoading: false
+      //   })
+      // })
+      //   .then(() => {
+      //     window.setTimeout(() => {
+      //       this.props.messageHide()
+      //     }, 5000)
+      //   })
   }
 
   render() {
