@@ -97,12 +97,12 @@ export function updateUserInfo(userDetails) {
     }))
     .then(response => {
       let error = ''
-
-      if (response.data.errors && response.data.errors.length > 0) {
-        error = response.data.errors[0].message
+      console.log('response', response)
+      if (!response.status === 200) {
+        throw new Error('Whoops, something went wrong')
       } else {
         const user = response.data.data.userUpdate
-        console.log('passes the if')
+        console.log('user', user)
 
         return dispatch({ 
           type: UPDATE_USER,
