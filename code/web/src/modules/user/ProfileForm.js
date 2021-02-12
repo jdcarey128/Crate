@@ -124,25 +124,25 @@ class ProfileForm extends Component {
           isLoading: false
         })
 
-        if (response.data.errors && response.data.errors.length > 0) {
-          this.props.messageShow(response.data.errors[0].message)
-        } else {
+        // if (response.data.errors && response.data.errors.length > 0) {
+        //   this.props.messageShow(response.data.errors[0].message)
+        // } else {
           this.props.messageShow('Profile saved successfully.')
-        }
+        // }
 
       })
-      // .catch(error => {
-      //   console.log('error', error)
-      //   this.props.messageShow('There was some error. Please try again.')
-      //   this.setState({
-      //     isLoading: false
-      //   })
-      // })
-      //   .then(() => {
-      //     window.setTimeout(() => {
-      //       this.props.messageHide()
-      //     }, 5000)
-      //   })
+      .catch(error => {
+        console.log('error', error)
+        this.props.messageShow('There was some error. Please try again.')
+        this.setState({
+          isLoading: false
+        })
+      })
+        .then(() => {
+          window.setTimeout(() => {
+            this.props.messageHide()
+          }, 5000)
+        })
   }
 
   render() {
