@@ -14,13 +14,12 @@ import Card from '../../ui/card/Card'
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
-import { logout } from './api/actions'
 
 const OrderCard = (props) => {
-  const determinedReturned = (returned) => {
+  const determinedReturned = (key, returned) => {
     if (returned === true ) {
       return (
-        <p>Returned</p>
+        <p key={key}>Returned</p>
       )
     } else {
       return (
@@ -29,7 +28,7 @@ const OrderCard = (props) => {
       }
   }
 
-  const constructGrid = () => {
+  const constructProductTable = () => {
     return(
       <Grid alignCenter={true} style={{ padding: '1em' }}>
         <GridCell>
@@ -43,15 +42,15 @@ const OrderCard = (props) => {
             </thead>
 
             <tbody>
-            {
-              isLoading
-                ? <tr>
-                    <td colSpan="6">
-                      <Loading message="loading products..."/>
-                    </td>
-                  </tr>
-                : props.order.length > 0
-                  ? props.order.products /*we aren't sure what the nest is*/.map(({ name, description, returned }) => (
+              {
+                isLoading
+                  ? <tr>
+                      <td colSpan="6">
+                        <Loading message="loading products..."/>
+                      </td>
+                    </tr>
+                  : props.order.length > 0
+                    ? props.order.products.map(({ name, key, description, returned }) => (
                       <tr key={id}>
 
                         <td>
@@ -63,18 +62,9 @@ const OrderCard = (props) => {
                         </td>
 
                         <td>
-                          { determinedReturned(returned) }
+                          { determinedReturned(key, returned) }
                         </td>
 
-                        <td style={{ textAlign: 'center' }}>
-                          <Link to={admin.productEdit.path(id)}>
-                            <Icon size={2} style={{ color: black }}>mode_edit</Icon>
-                          </Link>
-
-                          <span style={{ cursor: 'pointer' }} onClick={this.remove.bind(this, id)}>
-                              <Icon size={2} style={{ marginLeft: '0.5em' }}>delete</Icon>
-                            </span>
-                        </td>
                       </tr>
                     ))
                   : <tr>
@@ -82,14 +72,15 @@ const OrderCard = (props) => {
                         <EmptyMessage message="No products to show."/>
                       </td>
                     </tr>
-            }
+              }
             </tbody>
           </table>
         </GridCell>
       </Grid>
     )}
+
   return (
-    <Card style={{ width: '18em', backgroundColor: white }}>
+    <Card key={props.order.key} style={{ width: '18em', backgroundColor: white }}>
       <div style={{ padding: '1em 1.2em' }}>
         <H3>Delivered Crates</H3>
         <H4 font="secondary" style={{ color: black }}>{props.id}</H4>
@@ -98,8 +89,10 @@ const OrderCard = (props) => {
 
         <p style={{ color: grey2, marginTop: '1em' }}>{props.deliveryStatus}</p>
 
-        <p style={{ textAlign: 'center', marginTop: '1.5em', marginBottom: '1em' }}>
-        </p>
+        <p style={{ textAlign: 'center', marginTop: '1.5em', marginBottom: '1em' }}></p>
+        <div>
+          {constructProductTable()}
+        </div>
       </div>
     </Card>
   )
