@@ -26,7 +26,7 @@ class ProfileForm extends Component {
     this.state = {
       userDetails: {
         id: 0,
-        image: '',
+        image: '/images/stock/default_profile.jpg',
         email: '',
         shippingAddress: '',
         description: ''
@@ -36,8 +36,9 @@ class ProfileForm extends Component {
   }
 
   componentDidMount() {
-    let shippingAddress = '';
-    let description = '';
+    let shippingAddress = ''
+    let description = ''
+    let image = '/images/stock/default_profile.jpg'
     let userDetails; 
 
     if (this.props.user.details.address) {
@@ -48,9 +49,13 @@ class ProfileForm extends Component {
       description = this.props.user.details.description
     }
 
+    if (this.props.user.details.image) {
+      image = this.props.user.details.image
+    }
+
     userDetails = {
       id: this.props.user.details.id,
-      image: '',
+      image: image,
       email: this.props.user.details.email,
       shippingAddress: shippingAddress,
       description: description
@@ -62,7 +67,7 @@ class ProfileForm extends Component {
   onChange = (event) => {
     let userDetails = this.state.userDetails
     userDetails[event.target.name] = event.target.value
-
+    
     this.setState({
       userDetails
     })
@@ -70,7 +75,7 @@ class ProfileForm extends Component {
 
   onUpload = (event) => {
     this.props.messageShow('Uploading file, please wait...')
-
+  
     this.setState({
       isLoading: true
     })
@@ -201,14 +206,13 @@ class ProfileForm extends Component {
                   <input
                     type="file"
                     onChange={this.onUpload}
-                    // required={this.state.userDetails.image.id === 0}
+                    name='image'
                   />
                 </div>
 
                 {/* Uploaded image */}
 
-                {/* TODO: change string to default image */}
-                {renderIf(this.state.userDetails.image !== '', () => (
+                {renderIf(this.state.userDetails.image !== '/images/stock/default_profile.jpg', () => (
                   <img src={routeImage + this.state.userDetails.image} alt="Profile Image"
                     style={{ width: 200, marginTop: '1em' }}/>
                 ))}

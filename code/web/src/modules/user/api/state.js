@@ -26,11 +26,6 @@ export default (state = userInitialState, action) => {
         details: action.user,
       }
 
-    // case UPDATE_USER_RESPONSE:
-    //   return {
-
-    //   }
-
     case LOGIN_REQUEST:
       return {
         ...state,
