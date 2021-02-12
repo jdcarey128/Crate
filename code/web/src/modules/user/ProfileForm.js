@@ -12,7 +12,6 @@ import Button from '../../ui/button'
 import { grey, grey2 } from '../../ui/common/colors'
 import { white } from "../../ui/common/colors"
 
-
 // App Imports
 import userRoutes from '../../setup/routes/user'
 import { updateUserInfo } from './api/actions'
@@ -50,7 +49,7 @@ class ProfileForm extends Component {
     }
 
     userDetails = {
-      id: 0,
+      id: this.props.user.details.id,
       image: '',
       email: this.props.user.details.email,
       shippingAddress: shippingAddress,
@@ -118,28 +117,28 @@ class ProfileForm extends Component {
 
     // Save details
 
-    // this.props.updateUserInfo(this.state.userDetails)
-    //   .then(response => {
-    //     this.setState({
-    //       isLoading: false
-    //     })
+    this.props.updateUserInfo(this.state.userDetails)
+      .then(response => {
+        this.setState({
+          isLoading: false
+        })
 
-    //     if (response.data.errors && response.data.errors.length > 0) {
-    //       this.props.messageShow(response.data.errors[0].message)
-    //     } else {
-    //       this.props.messageShow('Profile saved successfully.')
-    //     }
-    //     window.setTimeout(() => {
-    //       this.props.messageHide()
-    //     }, 5000)
-    //   })
-    //   .catch(error => {
-    //     this.props.messageShow('There was some error. Please try again.')
+        if (response.data.errors && response.data.errors.length > 0) {
+          this.props.messageShow(response.data.errors[0].message)
+        } else {
+          this.props.messageShow('Profile saved successfully.')
+        }
+        window.setTimeout(() => {
+          this.props.messageHide()
+        }, 5000)
+      })
+      .catch(error => {
+        this.props.messageShow('There was some error. Please try again.')
 
-    //     this.setState({
-    //       isLoading: false
-    //     })
-    //   })
+        this.setState({
+          isLoading: false
+        })
+      })
   }
 
   render() {
@@ -245,7 +244,8 @@ class ProfileForm extends Component {
 
 // Component Properties
 ProfileForm.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  updateUserInfo: PropTypes.func.isRequired
 }
 
 function profileFormState(state) {
@@ -254,4 +254,4 @@ function profileFormState(state) {
   }
 }
 
-export default connect(profileFormState, { upload, messageShow, messageHide })(ProfileForm)
+export default connect(profileFormState, { upload, messageShow, messageHide, updateUserInfo })(ProfileForm)
