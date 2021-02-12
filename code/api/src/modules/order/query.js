@@ -1,9 +1,15 @@
 // Imports
-import { GraphQLList } from 'graphql'
+import { GraphQLInt, GraphQLList } from 'graphql'
 
 // App Imports
 import { OrderType } from './types'
-import { getByUser } from './resolvers'
+import { getByUser, getAll } from './resolvers'
+
+// Orders All
+export const orders = {
+  type: new GraphQLList(OrderType),
+  resolve: getAll
+}
 
 // Orders by user
 export const ordersByUser = {

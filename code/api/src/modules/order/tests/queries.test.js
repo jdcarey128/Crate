@@ -2,15 +2,25 @@ import { request, express, graphqlHTTP, schema, connection } from '../../../setu
 
 describe('orders by user', () => {
   let server = express();
+  let token;
+  let userTest;
 
   beforeAll(() => {
+    userTest = await models.User.create(name: 'Test Subject', password: 'password')
+
     server.use(
       '/',
       graphqlHTTP({
         schema: schema,
-        graphiql: false
+        graphiql: false,
+        context: (
+          auth: {
+            user: userTest
+          }
+        )
       })
     )
+
   })
 
   afterAll(done => {
@@ -18,11 +28,24 @@ describe('orders by user', () => {
     done();
   });
 
-  it("returns all user orders with product delivery and product info", async(done) =>{
-    var userId = 4
+  it("returns all orders", async(done) =>{
     const response = await request(server)
     .post('/')
-    .send({query: `query { ordersByUser( userId: "${userId}") {orders { deliveryDate deliveryStatus }}}`})
+    .send({query: `query { orders {user { name } deliveryDate deliveryStatus }}`})
+    .expect(200)
+
+    expect(response.body.data.orders.length).toBe(7)
+    expect(response.body.data.orders[0].user.name).toBe('Not a real human')
+    expect(response.body.data.orders[0].deliveryDate).toBe('3/12/21')
+    expect(response.body.data.orders[0].deliveryStatus).toBe('scheduled')
+    done();
+  } )
+
+  it("returns all user orders with product delivery and product info", async(done) =>{
+    // var userId = 4
+    const response = await request(server)
+    .post('/')
+    .send({query: `query { ordersByUser{deliveryDate deliveryStatus }}`})
     console.log(response.body)
     .expect(200)
 
