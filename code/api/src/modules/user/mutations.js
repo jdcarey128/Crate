@@ -44,6 +44,11 @@ export const userUpdate = {
   type: UserType,
   args: {
 
+    id: {
+      name: 'id',
+      type: GraphQLInt
+    },
+
     email: {
       name: 'email',
       type: GraphQLString

@@ -79,20 +79,25 @@ export async function getGenders() {
 }
 
 // Update Profile
-export async function update(parentValue, {  email, description, image, shippingAddress }, { auth }) {
-  if(auth.user && auth.user.role === params.user.roles.admin) {
-    return await models.User.update(
+export async function update(parentValue, {id, email, description, image, shippingAddress }) {
+     await models.User.update(
       {
         email,
         description,
         image,
         shippingAddress,
       },
-      { where: { id } }
+      {
+        where: {
+          id
+        }
+      }
     )
-  } else {
-    throw new Error('Operation denied.')
+    return await models.User.findOne({
+      where: {
+        id
+      }
+    })
   }
-}
 
 

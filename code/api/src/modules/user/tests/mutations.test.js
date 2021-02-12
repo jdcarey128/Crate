@@ -28,18 +28,18 @@ describe('user login', () => {
   });
 
   it('can update user profile', async (done) => {
-    const response = await request(server)
+    var email = 'test@test.com'
+    var description = 'test description'
+    var id = 2
+ const response = await request(server)
       .post('/')
       .send({
-        query: 'mutation{userUpdate(email: "test@test.com", description: "test description" ) {email description image shippingAddress}}'
-      })
+        query: `mutation{userUpdate(id: ${id}, email: "${email}", description: "${description}" ) {id email description image shippingAddress}}`})
       .expect(200)
-
-    //expect(response.body.data.users.length).toBe(4)
-    expect(response.body).toBe('admin@crate.com')
-    expect(response.body.data.users[0].description).toBe(null)
-    expect(response.body.data.users[0].image).toBe('/images/stock/default_profile.jpg')
-    expect(response.body.data.users[0].shippingAddress).toBe(null)
+    expect(response.body.data.userUpdate.email).toBe('test@test.com')
+    expect(response.body.data.userUpdate.description).toBe('test description')
+    expect(response.body.data.userUpdate.image).toBe('/images/stock/default_profile.jpg')
+    expect(response.body.data.userUpdate.shippingAddress).toBe(null)
 
     done();
   })
