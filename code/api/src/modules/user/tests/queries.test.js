@@ -42,7 +42,6 @@ describe('user login', () => {
 
       .send({query: `query {userLogin(email: "${email}", password: "${passwordInput}") {user {id email description shippingAddress image} token}}`})
       .expect(200)
-
     var resp = response.body.data.userLogin.user
 
     expect(resp.email).toBe('fake@example.com')
