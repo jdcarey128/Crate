@@ -64,11 +64,21 @@ class Orders extends Component {
           </GridCell>
         </Grid>
         <Grid>
+          {this.props.orders.deliveryStatus === 'scheduled' && 
           <GridCell style={{ padding: '2em', textAlign: 'center' }}>
             <section>
+              <H3>Upcoming</H3>
               {this.displayOrders(this.state.orders)}
             </section>
-          </GridCell>
+          </GridCell>}
+          {this.props.orders.deliveryStatus === 'delivered' && 
+          <GridCell style={{ padding: '2em', textAlign: 'center' }}>
+            <section>
+              <H3>Upcoming</H3>
+              {this.displayOrders(this.state.orders)}
+            </section>
+          </GridCell>}
+
         </Grid>
       </div>
     )
