@@ -45,14 +45,4 @@ const UserGenderType = new GraphQLObjectType({
   })
 })
 
-// User Orders type
-const UserOrdersType = new GraphQLObjectType({
-  name: 'userOrders',
-  description: 'User Order Type',
-
-  fields: () => ({
-    orders: { type: new GraphQLList( OrderType )}
-  })
-})
-
-export { UserType, UserLoginType, UserGenderType, UserOrdersType }
+export { UserType, UserLoginType, UserGenderType }

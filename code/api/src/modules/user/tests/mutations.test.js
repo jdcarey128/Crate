@@ -1,7 +1,4 @@
 import {
-  isType
-} from 'graphql';
-import {
   request,
   express,
   graphqlHTTP,

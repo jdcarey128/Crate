@@ -36,14 +36,14 @@ describe('user login', () => {
   it('can return user profile info', async (done) => {
     var email = 'fake@example.com';
     var passwordInput = 'password';
-    
+
     const response = await request(server)
       .post('/')
 
       .send({query: `query {userLogin(email: "${email}", password: "${passwordInput}") {user {id email description shippingAddress image} token}}`})
       .expect(200)
 
-    var resp = response.body.data.userLogin.user 
+    var resp = response.body.data.userLogin.user
 
     expect(resp.email).toBe('fake@example.com')
     expect(resp.description).toBe('I am actually a robot designed to buy clothes.')
@@ -56,7 +56,7 @@ describe('user login', () => {
   it('returns error for incorrect email', async (done) => {
     var email = 'faker@example.com';
     var passwordInput = 'password';
-    
+
     const response = await request(server)
       .post('/')
       .send({query: `query {userLogin(email: "${email}", password: "${passwordInput}") {user {id email description shippingAddress image} token}}`})
@@ -70,7 +70,7 @@ describe('user login', () => {
   it('returns illadvised error for incorrect password', async (done) => {
     var email = 'fake@example.com';
     var passwordInput = 'password123';
-    
+
     const response = await request(server)
       .post('/')
       .send({query: `query {userLogin(email: "${email}", password: "${passwordInput}") {user {id email description shippingAddress image} token}}`})

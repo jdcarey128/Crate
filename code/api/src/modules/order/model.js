@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
     userId: {
       type: DataTypes.INTEGER
     },
-    crateID: {
+    crateId: {
       type: DataTypes.INTEGER
     },
     deliveryDate: {
@@ -20,6 +20,7 @@ module.exports = function(sequelize, DataTypes) {
   Order.associate = function(models) {
     Order.belongsTo(models.User)
     Order.belongsTo(models.Crate)
+    Order.hasMany(models.ProductDelivery, { as: 'productDeliveries' })
   }
 
   return Order

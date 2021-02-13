@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
     productId: {
       type: DataTypes.INTEGER
     },
-    orderID: {
+    orderId: {
       type: DataTypes.INTEGER
     },
     returned: {
