@@ -12,7 +12,6 @@ import Button from '../../ui/button'
 import { grey, grey2 } from '../../ui/common/colors'
 import { white } from "../../ui/common/colors"
 
-
 // App Imports
 import userRoutes from '../../setup/routes/user'
 import { updateUserInfo } from './api/actions'
@@ -27,7 +26,7 @@ class ProfileForm extends Component {
     this.state = {
       userDetails: {
         id: 0,
-        image: '',
+        image: '/images/stock/default_profile.jpg',
         email: '',
         shippingAddress: '',
         description: ''
@@ -37,8 +36,9 @@ class ProfileForm extends Component {
   }
 
   componentDidMount() {
-    let shippingAddress = '';
-    let description = '';
+    let shippingAddress = ''
+    let description = ''
+    let image = '/images/stock/default_profile.jpg'
     let userDetails; 
 
     if (this.props.user.details.address) {
@@ -49,9 +49,13 @@ class ProfileForm extends Component {
       description = this.props.user.details.description
     }
 
+    if (this.props.user.details.image) {
+      image = this.props.user.details.image
+    }
+
     userDetails = {
-      id: 0,
-      image: '',
+      id: this.props.user.details.id,
+      image: image,
       email: this.props.user.details.email,
       shippingAddress: shippingAddress,
       description: description
@@ -63,7 +67,7 @@ class ProfileForm extends Component {
   onChange = (event) => {
     let userDetails = this.state.userDetails
     userDetails[event.target.name] = event.target.value
-
+    
     this.setState({
       userDetails
     })
@@ -71,7 +75,7 @@ class ProfileForm extends Component {
 
   onUpload = (event) => {
     this.props.messageShow('Uploading file, please wait...')
-
+  
     this.setState({
       isLoading: true
     })
@@ -81,7 +85,7 @@ class ProfileForm extends Component {
 
     this.props.upload(profileImage)
       .then(response => {
-        if (response.ok) {
+        if (response.status === 200) {
           this.props.messageShow('File uploaded successfully.')
 
           let userDetails = this.state.userDetails
@@ -118,28 +122,27 @@ class ProfileForm extends Component {
 
     // Save details
 
-    // this.props.updateUserInfo(this.state.userDetails)
-    //   .then(response => {
-    //     this.setState({
-    //       isLoading: false
-    //     })
+    this.props.updateUserInfo(this.state.userDetails)
+      .then(response => {
 
-    //     if (response.data.errors && response.data.errors.length > 0) {
-    //       this.props.messageShow(response.data.errors[0].message)
-    //     } else {
-    //       this.props.messageShow('Profile saved successfully.')
-    //     }
-    //     window.setTimeout(() => {
-    //       this.props.messageHide()
-    //     }, 5000)
-    //   })
-    //   .catch(error => {
-    //     this.props.messageShow('There was some error. Please try again.')
+        this.setState({
+          isLoading: false
+        })
 
-    //     this.setState({
-    //       isLoading: false
-    //     })
-    //   })
+        this.props.messageShow('Profile saved successfully.')
+
+      })
+      .catch(error => {
+        this.props.messageShow('There was some error. Please try again.')
+        this.setState({
+          isLoading: false
+        })
+      })
+      .then(() => {
+        window.setTimeout(() => {
+          this.props.messageHide()
+        }, 5000)
+      })
   }
 
   render() {
@@ -203,14 +206,13 @@ class ProfileForm extends Component {
                   <input
                     type="file"
                     onChange={this.onUpload}
-                    // required={this.state.userDetails.image.id === 0}
+                    name='image'
                   />
                 </div>
 
                 {/* Uploaded image */}
 
-                {/* TODO: change string to default image */}
-                {renderIf(this.state.userDetails.image !== '', () => (
+                {renderIf(this.state.userDetails.image !== '/images/stock/default_profile.jpg', () => (
                   <img src={routeImage + this.state.userDetails.image} alt="Profile Image"
                     style={{ width: 200, marginTop: '1em' }}/>
                 ))}
@@ -245,7 +247,8 @@ class ProfileForm extends Component {
 
 // Component Properties
 ProfileForm.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  updateUserInfo: PropTypes.func.isRequired
 }
 
 function profileFormState(state) {
@@ -254,4 +257,4 @@ function profileFormState(state) {
   }
 }
 
-export default connect(profileFormState, { upload, messageShow, messageHide })(ProfileForm)
+export default connect(profileFormState, { upload, messageShow, messageHide, updateUserInfo })(ProfileForm)

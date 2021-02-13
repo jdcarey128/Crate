@@ -11,6 +11,7 @@ export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
+export const UPDATE_USER = 'AUTH/UPDATE_USER'
 
 // Actions
 
@@ -36,7 +37,7 @@ export function login(userCredentials, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role}', 'token']
+      fields: ['user {id, name, email, role, description, shippingAddress, image}', 'token']
     }))
       .then(response => {
         let error = ''
@@ -92,10 +93,23 @@ export function updateUserInfo(userDetails) {
     return axios.post(routeApi, mutation({
       operation: 'userUpdate',
       variables: userDetails,
-      fields: ['user { id, image, email, shippingAddress, description }']
+      fields: ['id, image, email, shippingAddress, description']
     }))
+    .then(response => {
+      if (!response.status === 200) {
+        throw new Error('Whoops, something went wrong')
+      } else {
+        const user = response.data.data.userUpdate
+
+        return dispatch({ 
+          type: UPDATE_USER,
+          user,
+        })
+      }
+    })
   }
 }
+
 
 // Log out user and remove token from localStorage
 export function logout() {

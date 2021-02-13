@@ -14,6 +14,7 @@ import { grey, grey2 } from '../../ui/common/colors'
 // App Imports
 import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
+import { routeImage } from '../../setup/routes'
 
 // Component
 const Profile = (props) => (
@@ -31,13 +32,14 @@ const Profile = (props) => (
     </Grid>
 
     <Grid>
-      <GridCell style={{ padding: '2em', textAlign: 'center' }}>
+      <GridCell style={{ padding: '2em', textAlign: 'center', style: 'justifyCenter' }}>
         <H4 style={{ marginBottom: '0.5em' }}>{props.user.details.name}</H4>
+        
 
-        <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.email}</p>
-        <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.shippingAddress}</p>
-        <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.description}</p>
-        {/* TODO: img */}
+        <img src={routeImage + props.user.details.image} alt="Profile Image" style={{ width: 200, marginTop: '1em' }}/>
+        <p style={{ color: grey2, marginBottom: '2em', marginTop: '2em' }}>{props.user.details.email}</p>
+        <p style={{ color: grey2, marginBottom: '2em' }}>Shipping Address: {props.user.details.shippingAddress}</p>
+        <p style={{ color: grey2, marginBottom: '2em' }}>Description: {props.user.details.description}</p>
 
         <Link to={userRoutes.subscriptions.path}>
           <Button theme="primary">Subscriptions</Button>
