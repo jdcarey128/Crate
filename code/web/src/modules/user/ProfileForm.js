@@ -39,11 +39,11 @@ class ProfileForm extends Component {
     let shippingAddress = ''
     let description = ''
     let image = '/images/stock/default_profile.jpg'
-    let userDetails; 
+    let userDetails;
 
-    if (this.props.user.details.address) {
-      shippingAddress = this.props.user.details.address
-    } 
+    if (this.props.user.details.shippingAddress) {
+      shippingAddress = this.props.user.details.shippingAddress
+    }
 
     if (this.props.user.details.description) {
       description = this.props.user.details.description
@@ -67,7 +67,7 @@ class ProfileForm extends Component {
   onChange = (event) => {
     let userDetails = this.state.userDetails
     userDetails[event.target.name] = event.target.value
-    
+
     this.setState({
       userDetails
     })
@@ -75,7 +75,7 @@ class ProfileForm extends Component {
 
   onUpload = (event) => {
     this.props.messageShow('Uploading file, please wait...')
-  
+
     this.setState({
       isLoading: true
     })
@@ -94,11 +94,11 @@ class ProfileForm extends Component {
           this.setState({
             userDetails
           })
-          
+
           this.setState({
             isLoading: false
           })
-    
+
           window.setTimeout(() => {
             this.props.messageHide()
           }, 5000)
@@ -216,7 +216,7 @@ class ProfileForm extends Component {
                   <img src={routeImage + this.state.userDetails.image} alt="Profile Image"
                     style={{ width: 200, marginTop: '1em' }}/>
                 ))}
-               
+
               </div>
 
               {/* Form submit */}
