@@ -52,6 +52,9 @@ Click on image to view fullscreen and zoom
 
 ![Crate Tablet](https://raw.githubusercontent.com/atulmy/atulmy.github.io/master/images/crate/tablet-all-with-link.png)
 
+### Schema
+[IMAGE] (https://imgur.com/Jc0PmId)
+
 
 ## Core Structure
     code
