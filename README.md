@@ -22,6 +22,9 @@
 - React storybook demonstrating UI components for web
 - Server side rendering
 - Multi-package setup and dev scripts for an automated dev experiance
+- Authorized user can edit profile information
+- Authorized users can see order history information
+- Authorized users can edit delivery date for upcoming orders
 
 
 ## Useful for
