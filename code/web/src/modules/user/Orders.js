@@ -15,6 +15,10 @@ import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
 import OrderCard from './OrderCard'
 
+const cardStyle = {
+  justifyContent: 'center'
+}
+
 // Component
 class Orders extends Component {
   constructor(props) {
@@ -33,7 +37,7 @@ class Orders extends Component {
   }
 
   displayOrders = (orders) => {
-    return this.state.orders.map(order => {
+    const ordersToDisplay =  orders.map(order => {
       const {id, deliveryDate, deliveryStatus, userId, crateId} = order
 
       return (
@@ -47,11 +51,20 @@ class Orders extends Component {
         />
       )
     })
+    return ordersToDisplay
   }
+
+  sortOrdersByDeliveryStatus = (status) => {
+    const filteredOrders = this.state.orders.filter(order => {
+      return order.deliveryStatus === status
+    })
+    return this.displayOrders(filteredOrders)
+  }
+
 
   render() {
     return (
-      <div>
+      <div style={{ style: cardStyle }}>
         {/* SEO */}
         <Helmet>
           <title>My Orders - Crate</title>
@@ -63,22 +76,16 @@ class Orders extends Component {
             <H3 font="secondary">My Orders</H3>
           </GridCell>
         </Grid>
-        <Grid>
-          {this.props.orders.deliveryStatus === 'scheduled' && 
-          <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-            <section>
-              <H3>Upcoming</H3>
-              {this.displayOrders(this.state.orders)}
-            </section>
-          </GridCell>}
-          {this.props.orders.deliveryStatus === 'delivered' && 
-          <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-            <section>
-              <H3>Upcoming</H3>
-              {this.displayOrders(this.state.orders)}
-            </section>
-          </GridCell>}
 
+        <Grid>
+          <GridCell style={{ padding: '2em', textAlign: 'center', style: 'justifyCenter' }}>
+              <H3>Upcoming Crates</H3>
+              {this.sortOrdersByDeliveryStatus('scheduled')}
+          </GridCell>
+          <GridCell style={{ padding: '2em', textAlign: 'center' }}>
+              <H3>Delivered Crates</H3>
+              {this.sortOrdersByDeliveryStatus('delivered')}
+          </GridCell>
         </Grid>
       </div>
     )
