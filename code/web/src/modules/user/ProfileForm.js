@@ -85,7 +85,7 @@ class ProfileForm extends Component {
 
     this.props.upload(profileImage)
       .then(response => {
-        if (response.ok) {
+        if (response.status === 200) {
           this.props.messageShow('File uploaded successfully.')
 
           let userDetails = this.state.userDetails
