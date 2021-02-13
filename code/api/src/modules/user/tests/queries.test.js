@@ -18,7 +18,7 @@ describe('user login', () => {
     done();
   });
 
-  xit('can return users', async (done) => {
+  it('can return users', async (done) => {
     const response = await request(server)
       .post('/')
       .send({query: '{users{name email description}}'})
@@ -33,7 +33,7 @@ describe('user login', () => {
     done();
   })
 
-  xit('can return user profile info', async (done) => {
+  it('can return user profile info', async (done) => {
     var email = 'fake@example.com';
     var passwordInput = 'password';
 
@@ -53,7 +53,7 @@ describe('user login', () => {
     done();
   })
 
-  xit('returns error for incorrect email', async (done) => {
+  it('returns error for incorrect email', async (done) => {
     var email = 'faker@example.com';
     var passwordInput = 'password';
 
@@ -67,7 +67,7 @@ describe('user login', () => {
     done();
   })
 
-  xit('returns illadvised error for incorrect password', async (done) => {
+  it('returns illadvised error for incorrect password', async (done) => {
     var email = 'fake@example.com';
     var passwordInput = 'password123';
 
