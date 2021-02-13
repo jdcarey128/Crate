@@ -12,7 +12,7 @@ export async function getAll() {
 // Get Orders by User
 export async function getByUser(parentValue, {}, { auth }) {
   if(auth.user && auth.user.id > 0) {
-    return await models.Order.findAll({ raw: true,
+    return await models.Order.findAll({
       where: {
         userId: auth.user.id
       },
