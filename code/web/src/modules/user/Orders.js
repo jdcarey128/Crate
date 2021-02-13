@@ -14,6 +14,9 @@ import { grey, grey2 } from '../../ui/common/colors'
 import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
 import OrderCard from './OrderCard'
+import { getUserOrders } from './api/actions'
+import { messageShow, messageHide } from '../common/api/actions'
+
 
 const cardStyle = {
   justifyContent: 'center'
@@ -24,16 +27,28 @@ class Orders extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      orders: [
-        {id: 1, deliveryDate: '3/12/21', deliveryStatus: 'scheduled', userId: 2, crateId: 1, createdAt: new Date(), updatedAt: new Date()},
-        {id: 2, deliveryDate: '2/12/21', deliveryStatus: 'delivered', userId: 2, crateId: 1, createdAt: new Date(), updatedAt: new Date()},
-        {id: 3, deliveryDate: '1/12/21', deliveryStatus: 'delivered', userId: 2, crateId: 1, createdAt: new Date(), updatedAt: new Date()},
-        {id: 4, deliveryDate: '12/12/20', deliveryStatus: 'delivered', userId: 2, crateId: 1, createdAt: new Date(), updatedAt: new Date()},
-        {id: 5, deliveryDate: '3/12/21', deliveryStatus: 'scheduled', userId: 3, crateId: 2, createdAt: new Date(), updatedAt: new Date()},
-        {id: 6, deliveryDate: '3/12/21', deliveryStatus: 'scheduled', userId: 3, crateId: 2, createdAt: new Date(), updatedAt: new Date()},
-        {id: 7, deliveryDate: '4/15/21', deliveryStatus: 'scheduled', userId: 3, crateId: 2, createdAt: new Date(), updatedAt: new Date()}
-      ]
+      orders: []
     }
+  }
+
+  componentDidMount() {
+    this.props.getUserOrders()
+    .then(response => {
+      console.log('response', response)
+      if(response.status === 200) {
+        this.setState({orders: response.data.data.ordersById})
+      } else {
+        throw new Error('Whoops, something went wrong')
+      }
+    })
+    .catch(error => {
+      this.props.messageShow('There was some error. Please try again.')
+    })
+    .then(
+      window.setTimeout(() => {
+        this.props.messageHide()
+      }, 5000)
+    )
   }
 
   displayOrders = (orders) => {
@@ -95,6 +110,7 @@ class Orders extends Component {
 // Component Properties
 Orders.propTypes = {
   user: PropTypes.object.isRequired,
+  getUserOrders: PropTypes.func.isRequired
 }
 
 // Component State
@@ -104,4 +120,4 @@ function ordersState(state) {
   }
 }
 
-export default connect(ordersState)(Orders)
+export default connect(ordersState, { getUserOrders, messageShow, messageHide })(Orders)

@@ -109,6 +109,11 @@ class ProfileForm extends Component {
       .catch(error => {
         this.props.messageShow('There was some error. Please try again.')
       })
+      .then(
+        window.setTimeout(() => {
+          this.props.messageHide()
+        }, 5000)
+      )
   }
 
   onSubmit = (event) => {

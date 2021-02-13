@@ -88,6 +88,7 @@ export function register(userDetails) {
   }
 }
 
+// Update user profile
 export function updateUserInfo(userDetails) {
   return dispatch => {
     return axios.post(routeApi, mutation({
@@ -110,6 +111,14 @@ export function updateUserInfo(userDetails) {
   }
 }
 
+export function getUserOrders() {
+  return dispatch => {
+    return axios.post(routeApi, query({
+      operation: 'ordersByUser',
+      fields: ['deliveryDate', 'deliveryStatus']
+    }))
+  }
+}
 
 // Log out user and remove token from localStorage
 export function logout() {
