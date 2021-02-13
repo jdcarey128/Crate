@@ -120,6 +120,16 @@ export function getUserOrders() {
   }
 }
 
+export function updateDeliveryDate(orderId, newDeliveryDate) {
+  return dispatch => {
+    return axios.post(routeApi, mutation({
+      operation: 'orderUpdate',
+      variables: { id: orderId, deliveryDate: newDeliveryDate },
+      fields: ['id', 'deliveryDate']
+    }))
+  }
+}
+
 // Log out user and remove token from localStorage
 export function logout() {
   return dispatch => {
