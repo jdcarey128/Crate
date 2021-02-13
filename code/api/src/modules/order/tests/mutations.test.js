@@ -55,8 +55,6 @@ describe('orders by user', () => {
     .send({query: `mutation { orderUpdate(deliveryDate: "${newDate}", id: ${orderId}) { id deliveryDate deliveryStatus }}`})
     .expect(200)
 
-    console.log(response.body.data.orderUpdate)
-
     expect(response.body.data.orderUpdate.deliveryDate).toBe(newDate)
     expect(response.body.data.orderUpdate.deliveryStatus).toBe('scheduled')
     done();
