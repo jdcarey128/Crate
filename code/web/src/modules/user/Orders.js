@@ -51,19 +51,39 @@ class Orders extends Component {
     )
   }
 
+  handleUpdate = () => {
+    this.props.getUserOrders()
+    .then(response => {
+      if(response.status === 200) {
+        this.setState({orders: response.data.data.ordersByUser})
+      } else {
+        throw new Error('Whoops, something went wrong')
+      }
+    })
+    .catch(error => {
+      this.props.messageShow('There was some error. Please try again.')
+    })
+    .then(
+      window.setTimeout(() => {
+        this.props.messageHide()
+      }, 5000)
+    )
+  }
+
   displayOrders = (orders) => {
-    console.log('orders', orders)
     const ordersToDisplay =  orders.map(order => {
-      const {id, deliveryDate, deliveryStatus, userId, crateId} = order
+      const {id, deliveryDate, deliveryStatus, crateId, productDeliveries} = order
 
       return (
         <OrderCard
           key={id}
           id={id}
+          name={order.crate.name}
           deliveryDate={deliveryDate}
           deliveryStatus={deliveryStatus}
-          userId={userId}
           crateId={crateId}
+          productDeliveries={productDeliveries}
+          handleUpdate={this.handleUpdate}
         />
       )
     })

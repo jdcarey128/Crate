@@ -13,70 +13,95 @@ import Card from '../../ui/card/Card'
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
+import { updateDeliveryDate } from './api/actions'
 
 const OrderCard = (props) => {
-  // const determinedReturned = (key, returned) => {
-  //   if (returned === true ) {
-  //     return (
-  //       <p key={key}>Returned</p>
-  //     )
-  //   } else {
-  //     return (
-  //       <p>Kept!</p>
-  //     )
-  //     }
-  // }
 
-  // const constructProductTable = () => {
-  //   return(
-  //     <Grid alignCenter={true} style={{ padding: '1em' }}>
-  //       <GridCell>
-  //         <table className="striped">
-  //           <thead>
-  //             <tr>
-  //               <th>Product Name</th>
-  //               <th>Description</th>
-  //               <th>Returned</th>
-  //             </tr>
-  //           </thead>
+  const formatDate = (str) => {
+    const splitDate = str.split('-')
+    const year = splitDate[0]
+    const month = splitDate[1]
+    const day = splitDate[2]
+    return `${month}/${day}/${year}`
+  }
 
-  //           <tbody>
-  //             {
-  //               isLoading
-  //                 ? <tr>
-  //                     <td colSpan="6">
-  //                       <Loading message="loading products..."/>
-  //                     </td>
-  //                   </tr>
-  //                 : props.order.length > 0
-  //                   ? props.order.products.map(({ name, key, description, returned }) => (
-  //                     <tr key={id}>
+  const onChange = (event) => {
+    const inputDate = formatDate(event.target.value)
+    props.updateDeliveryDate(props.id, inputDate)
+    props.handleUpdate()
+  }
 
-  //                       <td>
-  //                         { name }
-  //                       </td>
+  const determineDeliveryButton = () => {
+    if(props.deliveryStatus === 'scheduled') {
+      return (
+        <div>
+          <p>Edit Delivery Date</p>
+          <input 
+            type='date'
+            name='change-delivery'
+            value='yyyy-MM-dd'
+            onChange={() => onChange(event)}
+          />
+        </div>
+      )
+  }
+}
 
-  //                       <td>
-  //                         { description }
-  //                       </td>
+  const determinedReturned = (key, returned) => {
+    if (returned === true ) {
+      return (
+        <p key={key}>Returned</p>
+      )
+    } else {
+      return (
+        <p>Kept!</p>
+      )
+      }
+  }
 
-  //                       <td>
-  //                         { determinedReturned(key, returned) }
-  //                       </td>
+  const constructProductTable = () => {
+    return(
+      <Grid alignCenter={true} style={{ padding: '1em' }}>
+        <GridCell>
+          <table>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+                {props.deliveryStatus === 'delivered' &&
+                <th>Returned</th>
+                } 
+              </tr>
+            </thead>
 
-  //                     </tr>
-  //                   ))
-  //                 : <tr>
-  //                     <td colSpan="6">
-  //                       <EmptyMessage message="No products to show."/>
-  //                     </td>
-  //                   </tr>
-  //             }
-  //           </tbody>
-  //         </table>
-  //       </GridCell>
-  //     </Grid>
-  //   )}
+            <tbody>
+              
+              {props.productDeliveries.map(delivery => (
+                      <tr key={delivery.id}>
+
+                        <td>
+                          { delivery.product.name }
+                        </td>
+
+                        <td>
+                          { delivery.product.description }
+                        </td>
+
+                        {props.deliveryStatus === 'delivered' &&
+                        <td>
+                          { determinedReturned(delivery.id, delivery.returned) }
+                        </td>}
+
+                      </tr>
+                    ))
+              }
+
+              
+            </tbody>
+          </table>
+        </GridCell>
+      </Grid>
+    )}
 
   const cardStyle = {
     justifyContent: 'center'
@@ -85,17 +110,17 @@ const OrderCard = (props) => {
   return (
     <Card key={props.key} style={{ width: '18em', backgroundColor: white }}>
       <div style={{ padding: '1em 1.2em' }}>
-        <H3>Crate Name</H3>
-        <H4 font="secondary" style={{ color: black }}>{props.id}</H4>
+        <H3>{props.name}</H3>
 
         <p style={{ color: grey2, marginTop: '1em' }}>{props.deliveryDate}</p>
 
         <p style={{ color: grey2, marginTop: '1em' }}>{props.deliveryStatus}</p>
 
         <p style={{ textAlign: 'center', marginTop: '1.5em', marginBottom: '1em' }}></p>
-        {/* <div>
+        {determineDeliveryButton()}
+        <div>
           {constructProductTable()}
-        </div> */}
+        </div>
       </div>
     </Card>
   )
@@ -107,6 +132,7 @@ OrderCard.propTypes = {
   deliveryStatus: PropTypes.string,
   userId: PropTypes.number,
   crateId: PropTypes.number,
+  updateDeliveryDate: PropTypes.func.isRequired
 }
 
-export default connect()(OrderCard)
+export default connect(null, { updateDeliveryDate })(OrderCard)

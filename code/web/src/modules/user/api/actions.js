@@ -115,12 +115,13 @@ export function getUserOrders() {
   return dispatch => {
     return axios.post(routeApi, query({
       operation: 'ordersByUser',
-      fields: ['deliveryDate', 'deliveryStatus', 'crate { id, name, description }', 'user { id, name }', 'productDeliveries { returned, product { name, description } }']
+      fields: ['id', 'deliveryDate', 'deliveryStatus', 'crate { id, name, description }', 'user { id, name }', 'productDeliveries {id, returned, product { name, description } }']
     }))
   }
 }
 
 export function updateDeliveryDate(orderId, newDeliveryDate) {
+  console.log('new date', newDeliveryDate)
   return dispatch => {
     return axios.post(routeApi, mutation({
       operation: 'orderUpdate',
