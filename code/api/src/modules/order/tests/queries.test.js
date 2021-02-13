@@ -6,14 +6,9 @@ import authentication from '../../../setup/authentication'
 
 describe('orders by user', () => {
   let server;
-  let token;
-  let userTest;
-  let user1;
 
   beforeAll(async () => {
-    // userTest = await models.User.create({name: 'Test Subject', email: 'test_subject@gmail.com', password: 'password'})
     var userTest = await models.User.findOne({raw: true, where: {email: 'fake@example.com'}})
-    // user1 = await userTest
 
     server = express();
     server.use(authentication);
@@ -33,7 +28,6 @@ describe('orders by user', () => {
   })
 
   afterAll(async() => {
-    await models.User.destroy({ where: {id: userTest.id} })
     connection.close();
     done();
   });
@@ -54,8 +48,7 @@ describe('orders by user', () => {
   it("returns all user orders with product delivery and product info", async(done) =>{
     const response = await request(server)
     .post('/')
-    .set('Content-type', 'application/json')
-    .send({query: '{ ordersByUser { deliveryDate deliveryStatus crate { id name description } user { id name } products { name description }}}'})
+    .send({query: '{ ordersByUser { deliveryDate deliveryStatus crate { id name description } user { id name } productDeliveries { returned product { name description } }}}'})
     .expect(200)
 
     var orders = response.body.data.ordersByUser
@@ -68,8 +61,8 @@ describe('orders by user', () => {
     expect(firstProductDeliveries[0].returned).toBe(false)
     expect(firstProductDeliveries[1].returned).toBe(true)
     expect(firstProductDeliveries[2].returned).toBe(false)
-
-    var firstProduct = response.body.data.ordersByUser[0].products[0]
+    
+    var firstProduct = firstProductDeliveries[0].product
     expect(firstProduct.name).toBe("Belt for Women")
     expect(firstProduct.description).toBe("A very nice belt for women.")
     done();
