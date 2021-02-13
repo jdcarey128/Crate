@@ -14,7 +14,7 @@ describe('App', () => {
     .click()
   })
 
-  it("should display a title and a vav bar", () => {
+  it("should display a title and a nav bar", () => {
     cy.contains('Crate')
     cy.contains('nav')
   })
@@ -37,6 +37,23 @@ describe('App', () => {
       .should('be.visible')
     cy.contains('Clothes for Men')
       .should('be.visible')
+  })
+
+  it("logging in with the wrong credentials should not work", () => {
+    cy.get('[href="/user/login"]')
+      .click()
+    cy.get('input')
+      .first()
+      .type("superMegaLoser@bunk.com")
+    cy.get('input')
+      .last()
+      .type("p@ssw0rd")
+    cy.get('button')
+      .contains('Login')
+      .click()
+    cy.contains('We do not have any user registered with superMegaLoser@bunk.com email address. Please signup.')
+      .should('be.visible')
+
   })
 
   it("should be able to see user's info after login", () => {
