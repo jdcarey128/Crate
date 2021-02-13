@@ -35,7 +35,6 @@ const Profile = (props) => (
       <GridCell style={{ padding: '2em', textAlign: 'center', style: 'justifyCenter' }}>
         <H4 style={{ marginBottom: '0.5em' }}>{props.user.details.name}</H4>
         
-
         <img src={routeImage + props.user.details.image} alt="Profile Image" style={{ width: 200, marginTop: '1em' }}/>
         <p style={{ color: grey2, marginBottom: '2em', marginTop: '2em' }}>{props.user.details.email}</p>
         <p style={{ color: grey2, marginBottom: '2em' }}>Shipping Address: {props.user.details.shippingAddress}</p>

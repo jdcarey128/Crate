@@ -6,10 +6,9 @@ import { connect } from 'react-redux'
 // UI Imports
 import { Grid, GridCell } from '../../ui/grid'
 import Input from '../../ui/input/Input'
-import { H3, H4 } from '../../ui/typography'
+import { H4 } from '../../ui/typography'
 import Icon from '../../ui/icon'
 import Button from '../../ui/button'
-import { grey, grey2 } from '../../ui/common/colors'
 import { white } from "../../ui/common/colors"
 
 // App Imports
@@ -109,6 +108,11 @@ class ProfileForm extends Component {
       .catch(error => {
         this.props.messageShow('There was some error. Please try again.')
       })
+      .then(
+        window.setTimeout(() => {
+          this.props.messageHide()
+        }, 5000)
+      )
   }
 
   onSubmit = (event) => {
