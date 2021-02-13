@@ -36,7 +36,7 @@ class Orders extends Component {
     .then(response => {
       console.log('response', response)
       if(response.status === 200) {
-        this.setState({orders: response.data.data.ordersById})
+        this.setState({orders: response.data.data.ordersByUser})
       } else {
         throw new Error('Whoops, something went wrong')
       }
@@ -52,6 +52,7 @@ class Orders extends Component {
   }
 
   displayOrders = (orders) => {
+    console.log('orders', orders)
     const ordersToDisplay =  orders.map(order => {
       const {id, deliveryDate, deliveryStatus, userId, crateId} = order
 
@@ -97,7 +98,7 @@ class Orders extends Component {
               <H3>Upcoming Crates</H3>
               {this.sortOrdersByDeliveryStatus('scheduled')}
           </GridCell>
-          <GridCell style={{ padding: '2em', textAlign: 'center' }}>
+          <GridCell style={{ padding: '2em', textAlign: 'center', style: 'justifyCenter'  }}>
               <H3>Delivered Crates</H3>
               {this.sortOrdersByDeliveryStatus('delivered')}
           </GridCell>

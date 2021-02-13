@@ -85,7 +85,7 @@ const OrderCard = (props) => {
   return (
     <Card key={props.key} style={{ width: '18em', backgroundColor: white }}>
       <div style={{ padding: '1em 1.2em' }}>
-        <H3>Delivered Crates</H3>
+        <H3>Crate Name</H3>
         <H4 font="secondary" style={{ color: black }}>{props.id}</H4>
 
         <p style={{ color: grey2, marginTop: '1em' }}>{props.deliveryDate}</p>

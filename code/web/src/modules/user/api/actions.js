@@ -115,7 +115,7 @@ export function getUserOrders() {
   return dispatch => {
     return axios.post(routeApi, query({
       operation: 'ordersByUser',
-      fields: ['deliveryDate', 'deliveryStatus']
+      fields: ['deliveryDate', 'deliveryStatus', 'crate { id, name, description }', 'user { id, name }', 'productDeliveries { returned, product { name, description } }']
     }))
   }
 }
