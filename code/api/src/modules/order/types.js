@@ -15,6 +15,7 @@ const OrderType = new GraphQLObjectType({
     id: {type: GraphQLInt },
     user: { type: UserType },
     crate: { type: CrateType },
+    productDeliveries: { type: new GraphQLList(ProductDeliveryType) },
     products: { type: new GraphQLList(ProductType) },
     deliveryDate: { type: GraphQLString },
     deliveryStatus: { type: GraphQLString },

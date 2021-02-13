@@ -19,15 +19,12 @@ export async function getByUser(parentValue, {}, { auth }) {
       include: [
         {model: models.User, as: 'user' },
         {model: models.Crate, as: 'crate' },
-        // {model: models.ProductDelivery}
-        {model: models.Product, as: 'products', through: { attributes: [] }}
+        {model: models.ProductDelivery, as: 'productDeliveries', 
+          include: [{ model: models.Product, as: 'product' }]
+        }, 
       ]
     })
   } else {
     throw new Error('Order does not exist')
   }
 }
-
-// {model: models.Order, as: 'order', include: [
-//   {model: productDelivery, as : 'productDelivery'}
-// ]}
