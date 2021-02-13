@@ -20,6 +20,8 @@ module.exports = function(sequelize, DataTypes) {
   Order.associate = function(models) {
     Order.belongsTo(models.User)
     Order.belongsTo(models.Crate)
+    // Order.hasMany(models.ProductDelivery)
+    Order.belongsToMany(models.Product, { through: models.ProductDelivery })
   }
 
   return Order
