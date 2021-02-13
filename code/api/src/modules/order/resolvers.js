@@ -28,3 +28,17 @@ export async function getByUser(parentValue, {}, { auth }) {
     throw new Error('Order does not exist')
   }
 }
+
+export async function update(parentValue, { id, deliveryDate }, { auth }) {
+  if(auth.user && auth.user.id > 0) {
+    await models.Order.update(
+      {
+        deliveryDate
+      },
+      { where: { id } }
+    )
+    return await models.Order.findOne({ where: { id }})
+  } else {
+    throw new Error('Operation denied')
+  }
+}
