@@ -55,9 +55,8 @@ describe('orders by user', () => {
     const response = await request(server)
     .post('/')
     .set('Content-type', 'application/json')
-    .send({query: '{ ordersByUser { deliveryDate deliveryStatus }}'})
+    .send({query: '{ ordersByUser { deliveryDate deliveryStatus crate { id name description } user { id name } products { name description }}}'})
     .expect(200)
-    console.log(response.body.data)
 
     var orders = response.body.data.ordersByUser
     expect(orders[0].deliveryDate).toBe("3/12/21")
@@ -70,7 +69,7 @@ describe('orders by user', () => {
     expect(firstProductDeliveries[1].returned).toBe(true)
     expect(firstProductDeliveries[2].returned).toBe(false)
 
-    var firstProduct = firstProductDeliveries[0].product
+    var firstProduct = response.body.data.ordersByUser[0].products[0]
     expect(firstProduct.name).toBe("Belt for Women")
     expect(firstProduct.description).toBe("A very nice belt for women.")
     done();

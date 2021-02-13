@@ -18,7 +18,7 @@ describe('user login', () => {
     done();
   });
 
-  xit('can return users', async (done) => {
+  it('can return users', async (done) => {
     const response = await request(server)
       .post('/')
       .send({query: '{users{name email description}}'})
@@ -33,7 +33,7 @@ describe('user login', () => {
     done();
   })
 
-  xit('can return user profile info', async (done) => {
+  it('can return user profile info', async (done) => {
     var email = 'fake@example.com';
     var passwordInput = 'password';
 
@@ -53,7 +53,7 @@ describe('user login', () => {
     done();
   })
 
-  xit('returns error for incorrect email', async (done) => {
+  it('returns error for incorrect email', async (done) => {
     var email = 'faker@example.com';
     var passwordInput = 'password';
 
@@ -67,7 +67,7 @@ describe('user login', () => {
     done();
   })
 
-  xit('returns illadvised error for incorrect password', async (done) => {
+  it('returns illadvised error for incorrect password', async (done) => {
     var email = 'fake@example.com';
     var passwordInput = 'password123';
 
@@ -82,47 +82,3 @@ describe('user login', () => {
   })
 
 })
-
-// describe('user orders', () => {
-//   let server = express();
-//
-//   beforeAll(() => {
-//     server.use(
-//       '/',
-//       graphqlHTTP({
-//         schema: schema,
-//         graphiql: false
-//       })
-//     )
-//   })
-//
-//   afterAll(done => {
-//     connection.close();
-//     done();
-//   });
-//
-//   it("returns all user orders with product delivery and product info", async(done) =>{
-//     var userId = 4
-//     const response = await request(server)
-//     .post('/')
-//     .send({"query": `query { userOrders( userId: "${userId}") {orders { deliveryDate deliveryStatus productDeliveries{ returned product{ name description }}}}}`})
-//     console.log(response.body)
-//     .expect(200)
-//
-//     var orders = response.data.userOrders.orders
-//     expect(orders[0].deliveryDate).toBe("3/12/21")
-//     expect(orders[0].deliveryStatus).toBe("scheduled")
-//     expect(orders[3].deliveryDate).toBe("12/12/20")
-//     expect(orders[3].deliveryStatus).toBe("delivered")
-//
-//     var firstProductDeliveries = orders[0].productDeliveries
-//     expect(firstProductDeliveries[0].returned).toBe(false)
-//     expect(firstProductDeliveries[1].returned).toBe(true)
-//     expect(firstProductDeliveries[2].returned).toBe(false)
-//
-//     var firstProduct = firstProductDeliveries[0].product
-//     expect(firstProduct.name).toBe("Belt for Women")
-//     expect(firstProduct.description).toBe("A very nice belt for women.")
-//     done();
-//   } )
-// })
