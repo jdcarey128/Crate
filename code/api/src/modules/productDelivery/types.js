@@ -6,13 +6,13 @@ import { ProductType } from '../product/types'
 
 // Product Delivery Type
 const ProductDeliveryType = new GraphQLObjectType({
-  name: 'productDelivery',
+  name: 'ProductDelivery',
   description: 'Product Delivery Type',
 
   fields: () => ({
     id: { type: GraphQLInt },
     product: { type: ProductType },
-    returned: { type: GraphQLBoolean },
+    returned: { type: GraphQLBoolean},
     createdAt: { type: GraphQLString },
     updatedAt: { type: GraphQLString }
   })

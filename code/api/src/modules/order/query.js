@@ -2,7 +2,7 @@
 import { GraphQLInt, GraphQLList } from 'graphql'
 
 // App Imports
-import { OrderType } from './types'
+import  OrderType  from './types'
 import { getByUser, getAll } from './resolvers'
 
 // Orders All
