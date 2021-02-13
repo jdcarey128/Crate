@@ -162,6 +162,12 @@ Click on image to view fullscreen and zoom
 - Mateus Abdala - [GitHub](https://github.com/mateusabdala)
 - Hossein Nedaee - [GitHub](https://github.com/hosseinnedaee)
 - Mohammad Afzal - [GitHub](https://github.com/afzalex)
+- Brian Liu - [GitHub](https://github.com/the-color-bliu)
+- Caleb Cyphers - [Github](http://github.com/CalebCyphers)
+- Garrett Cottrell - [Github](http://github.com/GarrettCottrell)
+- Joshua Carey - [Github](http://github.com/jdcarey128)
+- Kara Caputo - [Github](http://github.com/kncaputo)
+- Sarah Osgood - [Github](http://github.com/saraho1123)
 - [YOUR NAME HERE] - Feel free to contribute to the codebase by resolving any open issues, refactoring, adding new features, writing test cases or any other way to make the project better and helpful to the community. Feel free to fork and send pull requests.
 
 
